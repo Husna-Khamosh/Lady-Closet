@@ -1,6 +1,5 @@
- 
 import React from "react";
-import "../App.css";
+import "../CSS/store.css";
 
 function Header() {
   return (
@@ -32,8 +31,9 @@ function Header() {
                     <li class="OR">OR</li>
                 </ul>
       </div>
+      </header>
 
-    </header>
+      
   );
 }
-export default Header ;
+export default Header;
