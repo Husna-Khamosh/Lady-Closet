@@ -1,7 +1,7 @@
 import React from "react";
 import "../CSS/store.css";
 
-function Header() {
+function Header({ onCategoryChange, onCartClick }) {
   return (
     <header className="store-header">
       <div className="left-side-header">
@@ -18,19 +18,131 @@ function Header() {
             placeholder="Filter the products you are looking for"
           />
         </div>
+        
+<nav className="left-side-header-bottom">
+  <ul>
+    <li>
+      <a
+        href="#"
+        onClick={(event) => {
+          event.preventDefault();
+          onCategoryChange("All");
+        }}
+      >
+        All Products
+      </a>
+    </li>
+
+    <li>
+      <a
+        href="#"
+        onClick={(event) => {
+          event.preventDefault();
+          onCategoryChange("Clothing");
+        }}
+      >
+        Clothing
+      </a>
+    </li>
+
+    <li>
+      <a
+        href="#"
+        onClick={(event) => {
+          event.preventDefault();
+          onCategoryChange("Footwear");
+        }}
+      >
+        Footwear
+      </a>
+    </li>
+
+    <li>
+      <a
+        href="#"
+        onClick={(event) => {
+          event.preventDefault();
+          onCategoryChange("Pants & Jeans");
+        }}
+      >
+        Pants &amp; Jeans
+      </a>
+    </li>
+
+    <li>
+      <a
+        href="#"
+        onClick={(event) => {
+          event.preventDefault();
+          onCategoryChange("Sneakers");
+        }}
+      >
+        Sneakers
+      </a>
+    </li>
+
+    <li>
+      <a
+        href="#"
+        onClick={(event) => {
+          event.preventDefault();
+          onCategoryChange("Bags");
+        }}
+      >
+        Bags
+      </a>
+    </li>
+
+    <li>
+      <a
+        href="#"
+        onClick={(event) => {
+          event.preventDefault();
+          onCategoryChange("Scarves & Shawls");
+        }}
+      >
+        Scarves &amp; Shawls
+      </a>
+    </li>
+
+    <li>
+      <a
+        href="#"
+        onClick={(event) => {
+          event.preventDefault();
+          onCategoryChange("Accessories");
+        }}
+      >
+        Accessories
+      </a>
+    </li>
+  </ul>
+</nav>
+
+
       </div>
+      
 
       <div className="right-side-header">
           <ul>
                     <li><a href="wishlist.html">WishList</a></li>
                     <li><a href="order.html">Orders</a></li>
-                    <li class="cartheader">
-                        <a href="yourCart.html">🛒 Cart</a>
-                        <span class="cart-amount">3</span>
-                    </li>
-                    <li class="OR">OR</li>
+                    <li className="cartheader">
+                        <a href="#"
+                           onClick={(event) => {
+                            event.preventDefault();
+                            onCartClick();
+                          }}
+                        >
+                          🛒 Cart
+                        </a>
+
+                        <span className="cart-amount">3</span>
+                      </li>
+                    <li className="OR">OR</li>
                 </ul>
       </div>
+      
       </header>
 
       

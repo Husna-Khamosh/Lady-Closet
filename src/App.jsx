@@ -1,16 +1,10 @@
 
-import Header from "./Components/Header";
-import CategoryBar from "./Components/CategoryBar";
-import ProductPopularCarts from "./Components/ProductCart";
-
+import React from "react";
+import Store from "./Pages/Store";
 
 function App() {
   return (
-    <>
-      <Header />
-      <CategoryBar />
-      <ProductPopularCarts />
-    </>
+    <Store />
   );
 }
 
