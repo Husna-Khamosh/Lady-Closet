@@ -1215,6 +1215,9 @@ margin-top: 0;
 }
 .yourCart-header {
     min-width: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
 }
 
 .yourCart-avatar {
@@ -1266,8 +1269,7 @@ margin-top: 0;
 
     overflow: hidden;
 
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
+       display: block;
 }
 .your-cart-header-left h3 {
     margin: 0;
@@ -1517,8 +1519,8 @@ margin-top: 0;
 
 .cart-product-info p {
     margin: 0 0 2px;
-    font-size: 8px;
-    color: #718096;
+    font-size: 9px;
+    color: #20262e;
 }
 
 .cart-product-info span {

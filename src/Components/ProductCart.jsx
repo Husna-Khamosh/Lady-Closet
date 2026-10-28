@@ -1,9 +1,10 @@
 
 import React from "react";
 import "../CSS/store.css";
-import products from "../Data";
+
 
 function ProductPopularCarts({ products, onAddToCart }) {
+  
   return (
     <>
       <h3 className="section-title">
