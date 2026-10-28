@@ -11,12 +11,36 @@ function Store() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [currentPage, setCurrentPage] = useState("store");
   const [cart, setCart] = useState([]);
+  const [message, setMessage] = useState("");
+
 
   function addToCart(product) {
     setCart(function (previousCart) {
       return [...previousCart, product];
     });
+
+    setMessage("Product Added To Cart!");
+    setTimeout(function () {
+    setMessage("");
+    }, 3000);
+  
   }
+
+
+{/*remove product from cart button function */}
+
+function removeFromCart(product){
+ 
+  const result = cart.filter(function (addedProduct){
+    return addedProduct.id !==product.id;
+  });
+   setCart(result);
+   setMessage("Product Removed From Cart!")
+   setTimeout(function(){
+    setMessage("");
+   }, 3000);
+}
+
 
   const filteredProducts =
     selectedCategory === "All"
@@ -26,14 +50,27 @@ function Store() {
         });
 
   return (
+    
     <>
       <Header
         onCategoryChange={setSelectedCategory}
         onCartClick={() => setCurrentPage("cart")}
+        cartCount={cart.length}
       />
+    
+      {message && (
+        <div className={`toast-message ${
+          message.includes("Removed") ? "toast-error" : ""
+        }`}>
+          {message}
+        </div>
+      )}
 
       {currentPage === "cart" ? (
-        <YourCart cart={cart} />
+        <YourCart cart={cart}
+                  cartCount={cart.length}
+                  onRemoveFromCart={removeFromCart}
+        />
       ) : (
         <>
           <CategoryBar />

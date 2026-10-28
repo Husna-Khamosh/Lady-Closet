@@ -1,7 +1,7 @@
 import React from "react";
 import "../CSS/store.css";
 
-function Header({ onCategoryChange, onCartClick }) {
+function Header({ onCategoryChange, onCartClick, cartCount }) {
   return (
     <header className="store-header">
       <div className="left-side-header">
@@ -137,7 +137,7 @@ function Header({ onCategoryChange, onCartClick }) {
                           🛒 Cart
                         </a>
 
-                        <span className="cart-amount">3</span>
+                        <span className="cart-amount">{cartCount}</span>
                       </li>
                     <li className="OR">OR</li>
                 </ul>

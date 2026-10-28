@@ -13,7 +13,7 @@ function CategoryBar(){
             </div>
 
             <div className="category-top-right">
-                <img src="https://www.californiaclosets.com/cdn-cgi/imagedelivery/QcmF9QxCY9IztJwh4l1kWw/prod-admin.cc-website.com/2025/07/wardrobe-closet-design-workstation-vanity-shoe-shelving-california-closets.jpeg/w=1920,q=75" alt="" />
+                <img src="https://images.unsplash.com/photo-1601924994987-69e26d50dc26?auto=format&fit=crop&w=600&q=80" alt="" />
             </div>
         </div>
 

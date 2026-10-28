@@ -1,6 +1,7 @@
 import React from "react";
+import "../CSS/Store.css"
 
-function YourCart({ cart }) {
+function YourCart({ cart, cartCount, onRemoveFromCart }) {
     return(
          <>
         
@@ -8,7 +9,7 @@ function YourCart({ cart }) {
         <div className="yourCart-container">
             <div className="yourCart-left">
 
-                <h3 id="cart-title">Your Cart. 3 items</h3>
+                <h3 id="cart-title">Your Cart has {cartCount} items</h3>
 
                 <p className="yourCart-top-p">
                     Each shop ships and is tracked separately.
@@ -30,11 +31,6 @@ function YourCart({ cart }) {
                     <div className="total-amount" id="shop-total">
                         AFN 87,750
                     </div>
-
-                </div>
-                
-                
-                    
                     <div className="cart-products">
                     {cart && cart.length > 0 ? (
                         cart.map(function (product, index) {
@@ -45,13 +41,23 @@ function YourCart({ cart }) {
                             <img
                                 src={product.image}
                                 alt={product.name}
-                                width="100"
+                                width="100%"
                             />
 
                             <div className="cart-product-info">
                                 <h4>{product.name}</h4>
                                 <p>AFN {product.price}</p>
+                                <button type="button" className="remove-cart-product"
+                                    onClick={() => onRemoveFromCart(product)}
+                                >Remove</button> 
+                                <span>Save for later</span>
                             </div>
+
+                            <div class="quantity">
+                            <button type="button">−</button>
+                            <span>1</span>
+                            <button type="button">+</button>
+                        </div>
                             </div>
                         );
                         })
@@ -60,6 +66,12 @@ function YourCart({ cart }) {
                     )}
                     </div>
 
+
+                </div>
+                
+                
+                    
+                    
                   
 
             </div>
