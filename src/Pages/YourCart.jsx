@@ -78,7 +78,7 @@ const total = subtotal + deliveryFee + platformFee - discount;
                                                     className="product-small-image"
                                                     src={product.image}
                                                     alt={product.name}
-                                                    width="100%"
+                                                    
                                                 />
 
                                                 <div className="cart-product-info">

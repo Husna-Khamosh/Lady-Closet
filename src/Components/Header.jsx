@@ -3,7 +3,7 @@ import "../CSS/store.css";
 import { Link } from "react-router-dom";
 
 
-function Header({ onCategoryChange, onCartClick, cartCount }) {
+function Header({ onCategoryChange, cartCount, showCategories = true }) {
   return (
     <header className="store-header">
       <div className="left-side-header">
@@ -20,7 +20,8 @@ function Header({ onCategoryChange, onCartClick, cartCount }) {
             placeholder="Filter the products you are looking for"
           />
         </div>
-        
+
+{showCategories && (
 <nav className="left-side-header-bottom">
   <ul>
     <li>
@@ -120,6 +121,7 @@ function Header({ onCategoryChange, onCartClick, cartCount }) {
     </li>
   </ul>
 </nav>
+)}
 
 
       </div>
