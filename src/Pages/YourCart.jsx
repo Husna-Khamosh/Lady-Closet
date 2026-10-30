@@ -167,7 +167,7 @@ const total = subtotal + deliveryFee + platformFee - discount;
                             <li id="items-price">
                             AFN {subtotal.toLocaleString()}
                             </li>
-                            <li>-AFN 6,485</li>
+                            <li>-AFN {discount.toLocaleString()}</li>
                             <li>AFN {deliveryFee.toLocaleString()}</li>
                             <li>AFN 0</li>
                         </ul>

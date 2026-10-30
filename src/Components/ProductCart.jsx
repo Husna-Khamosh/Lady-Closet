@@ -3,7 +3,7 @@ import React from "react";
 import "../CSS/store.css";
 
 
-function ProductPopularCarts({ products, onAddToCart }) {
+function ProductPopularCarts({ products, onAddToCart, onAddToWishlist }) {
   
   return (
     <>
@@ -16,6 +16,14 @@ function ProductPopularCarts({ products, onAddToCart }) {
           return (
             <div className="popluar-week-cart" key={product.id}>
               <img src={product.image} alt={product.name} />
+              <button
+                type="button"
+                className="add-to-wishlist"
+                aria-label={`Add ${product.name} to wishlist`}
+                onClick={() => onAddToWishlist(product)}
+            >
+                ♡
+            </button>
 
               <h4 className="product-name">
                 {product.name}

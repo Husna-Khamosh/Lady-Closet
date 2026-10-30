@@ -1,5 +1,7 @@
 import React from "react";
 import "../CSS/store.css";
+import { Link } from "react-router-dom";
+
 
 function Header({ onCategoryChange, onCartClick, cartCount }) {
   return (
@@ -125,20 +127,17 @@ function Header({ onCategoryChange, onCartClick, cartCount }) {
 
       <div className="right-side-header">
           <ul>
-                    <li><a href="wishlist.html">WishList</a></li>
+                    <li>
+                      <Link to="/wishlist">WishList</Link>
+                    </li>
                     <li><a href="order.html">Orders</a></li>
                     <li className="cartheader">
-                        <a href="#"
-                           onClick={(event) => {
-                            event.preventDefault();
-                            onCartClick();
-                          }}
-                        >
+                      <Link to="/cart">
                           🛒 Cart
-                        </a>
+                      </Link>
 
-                        <span className="cart-amount">{cartCount}</span>
-                      </li>
+                      <span className="cart-amount">{cartCount}</span>
+                  </li>
                     <li className="OR">OR</li>
                 </ul>
       </div>
