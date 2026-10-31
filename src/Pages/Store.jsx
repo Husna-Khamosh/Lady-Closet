@@ -3,17 +3,26 @@
 import CategoryBar from "../Components/CategoryBar";
 import ProductPopularCarts from "../Components/ProductCart";
 import products from "../Data";
+import { useCart } from "../Context/CartContext";
 
 
 
 
 function Store({
+    
     cart,
     addToCart,
     addToWishlist,
-    selectedCategory
+    selectedCategory,
+    setMessage
 }) {
 
+  const { addItem } = useCart();
+
+  function handleAddToCart(product) {
+    addItem(product);
+    setMessage(`${product.name} added to cart successfully!`);
+}
 
   const filteredProducts =
     selectedCategory === "All"
@@ -29,7 +38,7 @@ function Store({
     <CategoryBar />
     <ProductPopularCarts
         products={filteredProducts}
-        onAddToCart={addToCart}
+        onAddToCart={handleAddToCart}
         onAddToWishlist={addToWishlist}
     />
     </>

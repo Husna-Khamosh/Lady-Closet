@@ -1,9 +1,12 @@
 import React from "react";
 import "../CSS/store.css";
 import { Link } from "react-router-dom";
+import { useCart } from "../Context/CartContext";
 
 
-function Header({ onCategoryChange, cartCount, showCategories = true }) {
+function Header({ onCategoryChange, showCategories = true }) {
+  const { cart } = useCart();
+  const cartCount = cart.length;
   return (
     <header className="store-header">
       <div className="left-side-header">

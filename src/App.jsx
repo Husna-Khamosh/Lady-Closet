@@ -10,7 +10,6 @@ import YourCart from "./Pages/YourCart";
 
 function App() {
 
-    const [cart, setCart] = useState([]);
     const [wishlist, setWishlist] = useState([]);
     const [message, setMessage] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("All");
@@ -32,22 +31,6 @@ function App() {
 }, [message]);
 
 
-
-    function addToCart(product) {
-        setCart(function (previousCart) {
-            return [...previousCart, product];
-        });
-        setMessage(`${product.name} added to cart successfully!`);
-    }
-
-    function removeFromCart(product) {
-        setCart(function (previousCart) {
-            return previousCart.filter(function (addedProduct) {
-                return addedProduct.id !== product.id;
-            });
-        });
-        setMessage(`${product.name} removed from cart!`);
-    }
 
     function addToWishlist(product) {
     setWishlist(function (previousWishlist) {
@@ -87,17 +70,16 @@ function removeFromWishlist(product) {
         <Routes>
 
             <Route
-                element={<MainLayout cartCount={cart.length} onCategoryChange={setSelectedCategory} />}
+                element={<MainLayout onCategoryChange={setSelectedCategory} />}
             >
 
                 <Route
                     path="/"
                     element={
                         <Store
-                            cart={cart}
-                            addToCart={addToCart}
                             addToWishlist={addToWishlist}
                             selectedCategory={selectedCategory}
+                            setMessage={setMessage}
                         />
                     }
                 />
@@ -105,11 +87,7 @@ function removeFromWishlist(product) {
                 <Route
                     path="/cart"
                     element={
-                        <YourCart
-                            cart={cart}
-                            cartCount={cart.length}
-                            onRemoveFromCart={removeFromCart}
-                        />
+                        <YourCart setMessage={setMessage}/>
                     }
                 />
 

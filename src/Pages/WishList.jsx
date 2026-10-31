@@ -19,7 +19,7 @@ function Wishlist({ wishlist, onRemoveFromWishlist }) {
                         return (
                             <div className="cart" key={product.id}>
 
-                                <img src={product.image} alt={product.name} />
+                                <img className="wishlist-avatar" src={product.image} alt={product.name} />
 
                                 <div className="cart-info">
                                     <h3>{product.name}</h3>

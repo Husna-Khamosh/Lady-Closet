@@ -1,8 +1,12 @@
 import React, { useState } from "react";
-import "../CSS/Store.css"
+import "../CSS/Store.css";
+import { useCart } from "../Context/CartContext";
 
-function YourCart({ cart, cartCount, onRemoveFromCart }) {
+function YourCart({setMessage}) {
     const [quantities, setQuantities] = useState({});
+    const { cart, removeItem } = useCart();
+
+    const cartCount = cart.length;
 
     const vendors = [...new Set(
     cart.map(function (product) {
@@ -89,7 +93,10 @@ const total = subtotal + deliveryFee + platformFee - discount;
                                                     <button
                                                         type="button"
                                                         className="remove-cart-product"
-                                                        onClick={() => onRemoveFromCart(product)}
+                                                        onClick={() => {
+                                                            removeItem(product);
+                                                            setMessage(`${product.name} removed from cart!`);
+                                                        }}
                                                     >
                                                         Remove
                                                     </button>
