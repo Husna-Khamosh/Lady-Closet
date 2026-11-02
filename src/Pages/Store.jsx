@@ -9,12 +9,11 @@ import { useCart } from "../Context/CartContext";
 
 
 function Store({
-    
-    cart,
-    addToCart,
-    addToWishlist,
-    selectedCategory,
-    setMessage
+        wishlist,
+        addToWishlist,
+        removeFromWishlist,
+        selectedCategory,
+        setMessage
 }) {
 
   const { addItem } = useCart();
@@ -38,8 +37,10 @@ function Store({
     <CategoryBar />
     <ProductPopularCarts
         products={filteredProducts}
+        wishlist={wishlist}
         onAddToCart={handleAddToCart}
         onAddToWishlist={addToWishlist}
+        onRemoveFromWishlist={removeFromWishlist}   
     />
     </>
   );

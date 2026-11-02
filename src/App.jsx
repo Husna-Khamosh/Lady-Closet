@@ -79,7 +79,9 @@ function removeFromWishlist(product) {
                     path="/"
                     element={
                         <Store
+                            wishlist={wishlist}
                             addToWishlist={addToWishlist}
+                            removeFromWishlist={removeFromWishlist}
                             selectedCategory={selectedCategory}
                             setMessage={setMessage}
                         />
@@ -103,7 +105,7 @@ function removeFromWishlist(product) {
                     }
                 />
 
-                <Route path="/product/:id" element={<ProductDetails />}/>
+                <Route path="/product/:id" element={<ProductDetails  setMessage={setMessage} addToWishlist={addToWishlist}/>}/>
 
             </Route>
             

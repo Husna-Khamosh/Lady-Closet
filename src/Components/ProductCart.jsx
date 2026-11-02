@@ -4,7 +4,13 @@ import "../CSS/store.css";
 import { Link } from "react-router-dom";
 
 
-function ProductPopularCarts({ products, onAddToCart, onAddToWishlist }) {
+function ProductPopularCarts({  
+    products,
+    wishlist,
+    onAddToCart,
+    onAddToWishlist,
+    onRemoveFromWishlist 
+  }) {
   
   return (
     <>
@@ -14,6 +20,11 @@ function ProductPopularCarts({ products, onAddToCart, onAddToWishlist }) {
 
       <div className="Popular-week">
         {products.map(function (product) {
+
+          const isWishlisted = wishlist.some(function (item) {
+              return item.id === product.id;
+          });
+
           return (
             <div className="popluar-week-cart" key={product.id}>
               <Link to={`/product/${product.id}`}>
@@ -21,13 +32,23 @@ function ProductPopularCarts({ products, onAddToCart, onAddToWishlist }) {
               </Link>
               
               <button
-                type="button"
-                className="add-to-wishlist"
-                aria-label={`Add ${product.name} to wishlist`}
-                onClick={() => onAddToWishlist(product)}
-            >
-                ♡
-            </button>
+                  type="button"
+                  className={`add-to-wishlist ${isWishlisted ? "active" : ""}`}
+                  aria-label={
+                      isWishlisted
+                          ? `Remove ${product.name} from wishlist`
+                          : `Add ${product.name} to wishlist`
+                  }
+                  onClick={() => {
+                      if (isWishlisted) {
+                          onRemoveFromWishlist(product);
+                      } else {
+                          onAddToWishlist(product);
+                      }
+                  }}
+              >
+                  {isWishlisted ? "♥" : "♡"}
+              </button>
 
               <Link to={`/product/${product.id}`} className="product-details-link">
                 <h4 className="product-name">
