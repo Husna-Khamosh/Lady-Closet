@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import "../CSS/Store.css";
 import { useCart } from "../Context/CartContext";
 
 function YourCart({setMessage}) {
-    const [quantities, setQuantities] = useState({});
-    const { cart, removeItem } = useCart();
+    const { cart, removeItem, updateQuantity } = useCart();
 
-    const cartCount = cart.length;
+    const cartCount = cart.reduce(function (total, product) {
+    return total + (Number(product.quantity) || 1);
+}, 0);
 
     const vendors = [...new Set(
     cart.map(function (product) {
@@ -15,9 +16,7 @@ function YourCart({setMessage}) {
 )];
 
 const subtotal = cart.reduce(function (total, product) {
-    const quantity = quantities[product.id] || 1;
-
-    return total + Number(product.price) * quantity;
+    return total + Number(product.price) * (Number(product.quantity) || 1);
 }, 0);
 
 const deliveryFee = vendors.length * 200;
@@ -46,9 +45,7 @@ const total = subtotal + deliveryFee + platformFee - discount;
                         });
 
                         const shopTotal = vendorProducts.reduce(function (total, product) {
-                        const quantity = quantities[product.id] || 1;
-
-                        return total + Number(product.price) * quantity;
+                            return total + Number(product.price) * (Number(product.quantity) || 1);
                         }, 0);
 
                         return (
@@ -103,42 +100,26 @@ const total = subtotal + deliveryFee + platformFee - discount;
 
                                                     <span>Save for later</span>
                                                 </div>
-
-                                                <div className="quantity">
-                                                <button
-                                                    type="button"
-                                                    onClick={() => {
-                                                        setQuantities(function (previous) {
-                                                            const currentQuantity = previous[product.id] || 1;
-
-                                                            return {
-                                                                ...previous,
-                                                                [product.id]: Math.max(1, currentQuantity - 1)
-                                                            };
-                                                        });
-                                                    }}
-                                                >
-                                                    −
-                                                </button>
-
-                                                <span>{quantities[product.id] || 1}</span>
-
-                                                <button
-                                                    type="button"
-                                                    onClick={() => {
-                                                        setQuantities(function (previous) {
-                                                            const currentQuantity = previous[product.id] || 1;
-
-                                                            return {
-                                                                ...previous,
-                                                                [product.id]: currentQuantity + 1
-                                                            };
-                                                        });
-                                                    }}
-                                                >
-                                                    +
-                                                </button>
-                                            </div>
+                                                            <div className="quantity">
+                                                                <button
+                                                                    type="button"
+                                                                    onClick={() => {
+                                                                        updateQuantity(product, (Number(product.quantity) || 1) - 1);
+                                                                    }}
+                                                                >
+                                                                    −
+                                                                </button>
+                                                                <span>{product.quantity || 1}</span>
+                                                                <button
+                                                                    type="button"
+                                                                    onClick={() => {
+                                                                        updateQuantity(product, (Number(product.quantity) || 1) + 1);
+                                                                    }}
+                                                                >
+                                                                    +
+                                                                </button>
+                                                            </div>
+                                                
                                                                                         </div>
                                                                                     );
                                                                                 })}

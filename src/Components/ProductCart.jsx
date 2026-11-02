@@ -1,6 +1,7 @@
 
 import React from "react";
 import "../CSS/store.css";
+import { Link } from "react-router-dom";
 
 
 function ProductPopularCarts({ products, onAddToCart, onAddToWishlist }) {
@@ -15,7 +16,10 @@ function ProductPopularCarts({ products, onAddToCart, onAddToWishlist }) {
         {products.map(function (product) {
           return (
             <div className="popluar-week-cart" key={product.id}>
-              <img src={product.image} alt={product.name} />
+              <Link to={`/product/${product.id}`}>
+                <img src={product.image} alt={product.name} />
+              </Link>
+              
               <button
                 type="button"
                 className="add-to-wishlist"
@@ -25,9 +29,12 @@ function ProductPopularCarts({ products, onAddToCart, onAddToWishlist }) {
                 ♡
             </button>
 
-              <h4 className="product-name">
+              <Link to={`/product/${product.id}`} className="product-details-link">
+                <h4 className="product-name">
                 {product.name}
-              </h4>
+                </h4>
+              </Link>
+              
 
               <span className="rate">
                 ⭐ {product.rating}

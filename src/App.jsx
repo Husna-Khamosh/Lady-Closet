@@ -6,6 +6,8 @@ import MainLayout from "./Layouts/MainLayout";
 import Store from "./Pages/Store";
 import Wishlist from "./Pages/WishList";
 import YourCart from "./Pages/YourCart";
+import ProductDetails from './Pages/Product-Details'
+
 
 
 function App() {
@@ -101,7 +103,10 @@ function removeFromWishlist(product) {
                     }
                 />
 
+                <Route path="/product/:id" element={<ProductDetails />}/>
+
             </Route>
+            
 
         </Routes>
     </>
