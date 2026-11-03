@@ -161,6 +161,15 @@ function ProductDetails({setMessage, addToWishlist}) {
 
         </div>
 
+                        {selectedProduct.description && (
+                                <div className="product-description">
+
+                                    <h3>Product Description</h3>
+
+                                    <p>{selectedProduct.description}</p>
+
+                                </div>
+                            )}
                         <div className="product-information">
 
                                 <h3>Product Information</h3>
