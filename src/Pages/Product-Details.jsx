@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import products from "../Data";
 import { useCart } from "../Context/CartContext";
 
+
 function ProductDetails({setMessage, addToWishlist}) {
     const { id } = useParams();
 

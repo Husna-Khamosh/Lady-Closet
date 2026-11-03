@@ -1,0 +1,253 @@
+.register-page {
+    min-height: 100vh;
+    background: #DCE6EC;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    font-family: Arial, sans-serif;
+}
+
+.register-page .store-container {
+    width: 100%;
+    max-width: 1150px;
+    min-height: 680px;
+    display: flex;
+    background: white;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(18, 62, 92, 0.13);
+}
+/* Left Side */
+
+.register-page .left-side {
+    width: 45%;
+    background: linear-gradient(145deg, #123E5C, #21516f);
+    color: white;
+    padding: 45px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.register-page .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.register-page .logo h5 {
+    font-size: 17px;
+    margin: 0;
+}
+
+.register-page .hero-content {
+    max-width: 390px;
+}
+
+.register-page .hero-content h1 {
+    font-size: 43px;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.register-page .hero-content p {
+    color: #d4e1e9;
+    font-size: 15px;
+    line-height: 1.9;
+}
+
+
+
+/* Right Side */
+
+.register-page .right-side {
+    width: 55%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+}
+/* Register Form */
+
+.register-page .register-form {
+    width: 100%;
+    max-width: 390px;
+}
+
+.register-page .register-header {
+    margin-bottom: 25px;
+}
+
+.register-page .register-header h2 {
+    color: #123E5C;
+    font-size: 30px;
+    margin: 0 0 12px;
+}
+
+.register-page .register-header p {
+    color: #8796a1;
+    font-size: 14px;
+}
+
+/* Input Fields */
+
+.register-page .register-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.register-page .register-input {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.register-page .register-input label {
+    color: #29485c;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.register-page .register-input input {
+    width: 100%;
+    height: 49px;
+    border: 1px solid #dce5eb;
+    border-radius: 10px;
+    padding: 0 15px;
+    outline: none;
+    font-size: 13px;
+    transition: 0.3s;
+}
+
+.register-page .register-input input:focus {
+    border-color: #4290c1;
+    box-shadow: 0 0 0 3px rgba(66, 144, 193, 0.12);
+}
+/* Terms & Conditions */
+
+.register-page .register-terms {
+    margin: 20px 0;
+}
+
+.register-page .register-terms label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #718096;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.register-page .register-terms input {
+    accent-color: #123E5C;
+    cursor: pointer;
+}
+
+/* Register Button */
+
+.register-page .register-btn {
+    width: 100%;
+    height: 49px;
+    border-radius: 10px;
+    border: none;
+    background: #123E5C;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.register-page .register-btn:hover {
+    background: #21516f;
+    transform: translateY(-2px);
+    box-shadow: 0 7px 15px rgba(18, 62, 92, 0.18);
+}
+
+/* Register Footer */
+
+.register-page .register-footer {
+    text-align: center;
+    margin-top: 25px;
+    color: #8796a1;
+    font-size: 13px;
+}
+
+.register-page .register-footer a {
+    color: #2676a8;
+    text-decoration: none;
+    font-weight: 600;
+}
+.register-page .error-message {
+    color: #dc3545;
+    font-size: 12px;
+    margin: 4px 0 0;
+}
+
+.register-page .success-message {
+    color: #198754;
+    background: #e8f5ed;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+.register-page .password-input {
+    position: relative;
+    width: 100%;
+}
+
+.register-page .password-input input {
+    width: 100%;
+    padding-right: 45px;
+}
+
+.register-page .password-input button {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    color: #718096;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.register-page .password-input button:hover {
+    color: #123E5C;
+}
+
+/* Responsive */
+
+@media (max-width: 750px) {
+
+    .register-page {
+        padding: 15px;
+    }
+
+    .register-page .store-container {
+        flex-direction: column;
+    }
+
+    .register-page .left-side {
+        width: 100%;
+        min-height: 250px;
+        padding: 30px;
+    }
+
+    .register-page .hero-content h1 {
+        font-size: 30px;
+    }
+
+    .register-page .right-side {
+        width: 100%;
+        padding: 40px 25px;
+    }
+
+}

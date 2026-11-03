@@ -7,7 +7,8 @@ import Store from "./Pages/Store";
 import Wishlist from "./Pages/WishList";
 import YourCart from "./Pages/YourCart";
 import ProductDetails from './Pages/Product-Details'
-
+import Login from './Pages/Login'
+import Register from "./Pages/Register"
 
 
 function App() {
@@ -70,6 +71,8 @@ function removeFromWishlist(product) {
         )}
 
         <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
 
             <Route
                 element={<MainLayout onCategoryChange={setSelectedCategory} />}
