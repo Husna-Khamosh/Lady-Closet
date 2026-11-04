@@ -8,7 +8,8 @@ import Wishlist from "./Pages/WishList";
 import YourCart from "./Pages/YourCart";
 import ProductDetails from './Pages/Product-Details'
 import Login from './Pages/Login'
-import Register from "./Pages/Register"
+import Register from "./Pages/Register";
+import Checkout from "./Pages/CheckOut";
 
 
 function App() {
@@ -109,7 +110,7 @@ function removeFromWishlist(product) {
                 />
 
                 <Route path="/product/:id" element={<ProductDetails  setMessage={setMessage} addToWishlist={addToWishlist}/>}/>
-
+                <Route path="/checkout" element={<Checkout />} />   
             </Route>
             
 

@@ -1,9 +1,11 @@
 import React from "react";
 import "../CSS/Store.css";
 import { useCart } from "../Context/CartContext";
+import { useNavigate } from "react-router-dom";
 
 function YourCart({setMessage}) {
     const { cart, removeItem, updateQuantity } = useCart();
+    const navigate = useNavigate();
 
     const cartCount = cart.reduce(function (total, product) {
     return total + (Number(product.quantity) || 1);
@@ -165,7 +167,7 @@ const total = subtotal + deliveryFee + platformFee - discount;
                     <h2>Total</h2>
                     <h3 id="cart-total">AFN {total.toLocaleString()}</h3>
                 </div>
-                <button className="checkout-btn">
+                <button className="checkout-btn" onClick={()=> navigate("/checkout")}>
                     CheckOut
                 </button>
 
