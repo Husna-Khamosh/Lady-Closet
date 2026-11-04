@@ -176,6 +176,51 @@ function Checkout() {
         }
     }
 
+    function handlePlaceOrder() {
+
+    const newOrder = {
+        id: "ORD-" + Date.now(),
+
+        date: new Date().toISOString(),
+
+        items: cart.map((product) => ({
+            ...product,
+            quantity: Number(product.quantity) || 1
+        })),
+
+        address: selectedAddressInfo,
+
+        paymentMethod: paymentMethod,
+
+        subtotal: subtotal,
+
+        deliveryFee: deliveryFee,
+
+        total: total,
+
+        shops: vendors,
+
+        status: "Processing"
+    };
+
+    const savedOrders = JSON.parse(
+        localStorage.getItem("orders")
+    ) || [];
+
+    const updatedOrders = [
+        ...savedOrders,
+        newOrder
+    ];
+
+    localStorage.setItem(
+        "orders",
+        JSON.stringify(updatedOrders)
+    );
+
+    alert("Order placed successfully!");
+}
+
+
     const selectedAddressInfo = addresses.find(
     (address) => String(address.id) === selectedAddress
 );
@@ -487,7 +532,7 @@ function Checkout() {
                     <button
                         type="button"
                         className="checkout-btn"
-                        onClick={() => alert("Order placed successfully!")}
+                        onClick={handlePlaceOrder}
                     >
                         Place Order
                     </button>
