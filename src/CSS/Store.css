@@ -249,18 +249,42 @@ input:focus {
     color: white;
     font-size: 9px;
 }
-
-.right-side-header .OR {
-    width: 30px;
-    height: 30px;
+ .right-side-header .auth-links{
     display: flex;
     align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    background-color: #d8edf9;
+    justify-content: center; 
     color: #21516f;
     font-size: 11px;
     font-weight: bold;
+    
+}
+/* Logout Button */
+
+.right-side-header .logout-btn {
+    background-color: #ffffff;
+    color: #c44545;
+
+    border: 1px solid #e5bcbc;
+    border-radius: 8px;
+
+    padding: 9px 17px;
+
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.right-side-header .logout-btn:hover {
+    background-color: #c44545;
+    color: #ffffff;
+    border-color: #c44545;
+}
+
+.right-side-header .logout-btn:active {
+    transform: scale(0.96);
 }
 
 #menu-toggle {
@@ -3218,7 +3242,7 @@ border-color: #21516f;
         font-size: 10px;
     }
 
-    .right-side-header .OR {
+    .right-side-header .auth-links {
         width: 28px;
         height: 28px;
         font-size: 10px;
@@ -3662,10 +3686,11 @@ border-color: #21516f;
         font-size: 10px;
     }
 
-    .right-side-header .OR {
+    .right-side-header .auth-links {
         width: 28px;
         height: 28px;
         font-size: 10px;
+        
     }
 
     .category-top {
@@ -3735,6 +3760,9 @@ border-color: #21516f;
         margin-right: 10px;
     }
 }
+
+
+
 
 
 

@@ -17,6 +17,30 @@ import AdminShops from "./Pages/AdminShops";
 
 
 function App() {
+    const [isLoggedIn, setIsLoggedIn] = useState(
+    localStorage.getItem("isLoggedIn") === "true"
+    );
+    const [currentUser, setCurrentUser] = useState(function () {
+    const savedUser = localStorage.getItem("currentUser");
+
+    return savedUser ? JSON.parse(savedUser) : null;
+    });
+    function handleLogin(user) {
+    localStorage.setItem("isLoggedIn", "true");
+    localStorage.setItem("currentUser", JSON.stringify(user));
+
+    setIsLoggedIn(true);
+    setCurrentUser(user);
+    }
+
+    function handleLogout() {
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("currentUser");
+
+    setIsLoggedIn(false);
+    setCurrentUser(null);
+}   
+
 
     const [wishlist, setWishlist] = useState(function () {
     const savedWishlist = localStorage.getItem("wishlist");
@@ -87,12 +111,22 @@ function removeFromWishlist(product) {
         )}
 
         <Routes>
-            <Route path="/login" element={<Login />} />
+            <Route
+                path="/login"
+                element={<Login onLogin={handleLogin} />}
+            />
             <Route path="/register" element={<Register />} />
 
             {/* Store Layout */}
             <Route
-                element={<MainLayout onCategoryChange={setSelectedCategory} />}
+                element={
+                    <MainLayout
+                        onCategoryChange={setSelectedCategory}
+                        isLoggedIn={isLoggedIn}
+                        onLogout={handleLogout}
+                        currentUser={currentUser}
+                    />
+                }
             >
                 <Route
                     path="/"

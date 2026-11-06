@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useCart } from "../Context/CartContext";
 
 
-function Header({ onCategoryChange, showCategories = true }) {
+function Header({ onCategoryChange, showCategories = true, isLoggedIn, onLogout, currentUser }) {
   const { cart } = useCart();
   const cartCount = cart.length;
   return (
@@ -16,7 +16,11 @@ function Header({ onCategoryChange, showCategories = true }) {
             alt="Husna Khamosh"
           />
 
-          <span>Husna Khamosh</span>
+          <span>
+              {isLoggedIn && currentUser
+                  ? currentUser.fullName
+                  : "Guest"}
+          </span>
 
           <input
             type="search"
@@ -143,7 +147,18 @@ function Header({ onCategoryChange, showCategories = true }) {
 
                       <span className="cart-amount">{cartCount}</span>
                   </li>
-                    <li className="OR">OR</li>
+                    {isLoggedIn ? (
+                  <li className="auth-links">
+                      <button className="logout-btn"
+                              onClick={onLogout}>Logout</button>
+                  </li>
+              ) : (
+                  <li className="auth-links">
+                      <Link to="/login">Login</Link>
+                      {" / "}
+                      <Link to="/register">Register</Link>
+                  </li>
+              )}
                 </ul>
       </div>
       

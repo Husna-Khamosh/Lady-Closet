@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import "../CSS/Login.css";
 import { Eye, EyeOff } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
-function Login() {
+function Login({onLogin}) {
+    const navigate = useNavigate();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -34,11 +36,36 @@ function Login() {
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-        setSuccessMessage("Your form is valid! Welcome back.");
+
+    const savedUsers = JSON.parse(
+        localStorage.getItem("users")
+    ) || [];
+
+    const currentUser = savedUsers.find(function (user) {
+    return (
+        user.email.trim().toLowerCase() === email.trim().toLowerCase() &&
+        user.password === password
+    );
+});
+
+    if (currentUser) {
+        onLogin(currentUser);
+        navigate("/");
+
+
     } else {
+
+        setErrors({
+            email: "Invalid email or password."
+        });
+
         setSuccessMessage("");
     }
-};
+
+} else {
+    setSuccessMessage("");
+}
+    }
     return (
         <div className="login-page">
 

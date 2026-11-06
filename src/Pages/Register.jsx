@@ -20,34 +20,28 @@ function Register() {
         event.preventDefault();
 
         const newErrors = {};
-
-        // Full Name Validation
         if (!fullName.trim()) {
             newErrors.fullName = "Full name is required.";
         }
 
-        // Email Validation
         if (!email.trim()) {
             newErrors.email = "Email address is required.";
         } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
             newErrors.email = "Please enter a valid email address.";
         }
 
-        // Password Validation
         if (!password) {
             newErrors.password = "Password is required.";
         } else if (password.length < 8) {
             newErrors.password = "Password must be at least 8 characters.";
         }
 
-        // Confirm Password Validation
         if (!confirmPassword) {
             newErrors.confirmPassword = "Please confirm your password.";
         } else if (password !== confirmPassword) {
             newErrors.confirmPassword = "Passwords do not match.";
         }
 
-        // Terms Validation
         if (!acceptedTerms) {
             newErrors.terms = "Please accept the Terms & Conditions.";
         }
@@ -55,11 +49,40 @@ function Register() {
         setErrors(newErrors);
 
         if (Object.keys(newErrors).length === 0) {
-            setSuccessMessage("Your account details are valid!");
+
+            const savedUsers = JSON.parse(
+                localStorage.getItem("users")
+            ) || [];
+
+            const userExists = savedUsers.some(function (user) {
+                return user.email === email.trim();
+            });
+
+            if (userExists) {
+                setErrors({
+                    email: "This email is already registered."
+                });
+
+                setSuccessMessage("");
+                return;
+            }
+
+            const newUser = {
+                fullName: fullName.trim(),
+                email: email.trim(),
+                password: password
+            };
+
+            const updatedUsers = [...savedUsers, newUser];
+
+            localStorage.setItem("users", JSON.stringify(updatedUsers));
+
+            setSuccessMessage("Your account has been created successfully!");
+
         } else {
             setSuccessMessage("");
         }
-    };
+            };
 
     return (
         <div className="register-page">
