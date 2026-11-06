@@ -18,7 +18,18 @@ import AdminShops from "./Pages/AdminShops";
 
 function App() {
 
-    const [wishlist, setWishlist] = useState([]);
+    const [wishlist, setWishlist] = useState(function () {
+    const savedWishlist = localStorage.getItem("wishlist");
+    return savedWishlist ? JSON.parse(savedWishlist) : [];
+
+    });
+
+    useEffect(function () {
+
+    localStorage.setItem("wishlist", JSON.stringify(wishlist));
+
+}, [wishlist]);
+
     const [message, setMessage] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("All");
 
