@@ -1791,9 +1791,6 @@ border-color: #21516f;
 
 /*payment page*/
 
-/* =========================
-   Checkout Progress
-========================= */
 
 .payment-progress {
     list-style: none;
@@ -2516,143 +2513,249 @@ border-color: #21516f;
     margin:0;
 }
 
-/*order page*/
 
-.order-title{
+
+/* My Orders Page */
+
+.orders-container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 25px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.order-card {
+    background-color: #ffffff;
+    border: 1px solid #e5e9ed;
+    border-radius: 16px;
+    padding: 25px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.04);
+}
+
+.order-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.order-info h3 {
+    color: #123E5C;
+    font-size: 20px;
+    margin: 0;
+}
+
+.order-info p {
+    color: #647482;
+    font-size: 14px;
+    margin: 0;
+}
+
+/* Order Items */
+
+.order-items {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 18px 0;
+    border-top: 1px solid #edf0f2;
+    border-bottom: 1px solid #edf0f2;
+}
+
+.order-item {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.order-item img {
+    width: 85px;
+    height: 85px;
+    object-fit: cover;
+    border-radius: 10px;
+    background-color: #f5f7f9;
+}
+
+.order-item h4 {
+    color: #123E5C;
+    font-size: 15px;
+    margin: 0 0 8px;
+}
+
+.order-item p {
+    color: #647482;
+    font-size: 13px;
+    margin: 5px 0;
+}
+
+/* Order Progress */
+
+.order-progress {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    padding: 10px 15px;
+}
+
+.progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    z-index: 1;
+    flex: 1;
+}
+
+.progress-step span {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: #e8edf1;
+    color: #71808c;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.progress-step p {
+    font-size: 13px;
+    color: #71808c;
+    margin: 0;
+}
+
+.progress-step.active span {
+    background-color: #123E5C;
+    color: #ffffff;
+}
+
+.progress-step.active p {
+    color: #123E5C;
+    font-weight: 600;
+}
+
+.order-progress::before {
+    content: "";
+    position: absolute;
+
+    top: 27px;
+    left: 12.5%;
+    right: 12.5%;
+
+    height: 3px;
+    background-color: #e8edf1;
+
+    z-index: 0;
+}
+
+/*َadmin orders page */
+.order-details {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 25px;
+    background: #ffffff;
+    border: 1px solid #e5e9ed;
+    border-radius: 16px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.04);
+}
+
+.order-details h2 {
+    color: #123E5C;
+    margin-bottom: 25px;
+}
+
+.details-info {
     display: grid;
-    grid-template-columns: repeat(2,1fr);
-    gap: 5px;
-    margin: 15px 25px 0 25px;
-}
-.order-title-left p{
-    color: gray;
-    margin-top: 0;
-}
-.order-title-right{
-    justify-self: end;
-}
-.progress-btn{
-    border-radius: 12px;
-    border: 1px solid #d5dce1;
-    color: #21516f;
-    background-color: #81bce6;
-    height: 25px;
-    font-weight: bold;
-}
-.invoice-btn{
-    border-radius: 12px;
-    border: 1px solid #d5dce1;
-    color: #21516f;
-    background-color: white;
-    height: 25px;
-    width: 90px;
-    font-weight: bold;
-}
-.order-carts{
-    box-sizing:border-box;
-    background-color:white;
-    border:1px solid #d5dce1;
-    border-radius:10px;
-    margin:15px 25px 0 25px;
-    overflow:hidden;
-}
-.order-carts-title{
-    height:70px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    border-bottom:1px solid #e5e7eb;
-}
-.order-carts-title-left{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    margin:10px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #edf0f2;
 }
 
-.order-carts-title-left h3,
-.order-carts-title-left p{
-    margin:0;
-}
-.order-carts-avatar {
-  width: 33px;
-  height: 33px;
-  flex-shrink: 0;
-  margin: 0px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 8px;
-  background: #eef6fa;
-  color: #0b6b9d;
-  font-size: 10px;
-  font-weight: 700;
+.details-info p,
+.details-total p {
+    color: #647482;
+    font-size: 14px;
 }
 
-.order-carts-title-right{
-    display:flex;
-    align-items:center;
-    gap:15px;
-    margin-right:15px;
+.details-products {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 20px 0;
 }
 
-.order-carts-title-right h3{
-    margin:0;
-}
-.order-carts-title-right button{
-    border-radius: 12px;
-    border: 1px solid #d5dce1;
-    color: #21516f;
-    background-color: #81bce6;
-    height: 25px;
-    font-weight: bold;
-}
-.progress-line{
-    position:absolute;
-    top:38px;
-    left:20px;
-    right:20px;
-    height:3px;
-    background-color:#d5dce1;
-}
-.order-progress{
-    position:relative;
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    padding:30px 20px 20px;
-}
-.progress-active{
-    position:absolute;
-    top:38px;
-    left:20px;
-    width:66%;
-    height:3px;
-    background-color: #287da8;
-}
-.progress-step{
-    position:relative;
-    z-index:2;
+.details-product {
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
-.progress-step span{
-    display:block;
-    width:16px;
-    height:16px;
-    border-radius:50%;
-    background-color: #d5dce1;
+.details-product img {
+    width: 75px;
+    height: 75px;
+    object-fit: cover;
+    border-radius: 10px;
 }
 
-.progress-step.active span{
-    background-color: #287da8;
-}
-.progress-step h4{
-    margin:8px 0 0 0;
+.details-product h4 {
+    color: #123E5C;
+    margin: 0 0 8px;
 }
 
-.progress-step p{
-    margin:5px 0 0 0;
-    color:gray;
+.details-product p {
+    color: #647482;
+    font-size: 13px;
+    margin: 5px 0;
 }
+
+.details-total {
+    border-top: 1px solid #edf0f2;
+    padding-top: 15px;
+    text-align: right;
+}
+
+.details-total h3 {
+    color: #123E5C;
+}
+
+.order-details button {
+    background: #123E5C;
+    color: white;
+    border: none;
+    padding: 11px 22px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+@media (max-width: 700px) {
+    .details-info {
+        grid-template-columns: 1fr;
+    }
+
+    .order-details {
+        margin: 20px 12px;
+        padding: 18px;
+    }
+}
+
+
+
+
+
+
 
 .store-header {
     display: flex;

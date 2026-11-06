@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import "../CSS/Store.css";
 import { useCart } from "../Context/CartContext";
 import { AlignRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+
 
 function Checkout() {
     const { cart } = useCart();
-
+    const navigate = useNavigate();
     const [selectedAddress, setSelectedAddress] = useState("");
     const [discountCode, setDiscountCode] = useState("");
     const [showAddressForm, setShowAddressForm] = useState(false);
@@ -177,6 +179,11 @@ function Checkout() {
     }
 
     function handlePlaceOrder() {
+        if (cart.length === 0) {
+    alert("Your cart is empty!");
+    
+    return;
+}
 
     const newOrder = {
         id: "ORD-" + Date.now(),
@@ -218,6 +225,7 @@ function Checkout() {
     );
 
     alert("Order placed successfully!");
+    navigate("/orders");
 }
 
 
@@ -533,6 +541,7 @@ function Checkout() {
                         type="button"
                         className="checkout-btn"
                         onClick={handlePlaceOrder}
+
                     >
                         Place Order
                     </button>

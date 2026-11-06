@@ -10,6 +10,10 @@ import ProductDetails from './Pages/Product-Details'
 import Login from './Pages/Login'
 import Register from "./Pages/Register";
 import Checkout from "./Pages/CheckOut";
+import MyOrders from "./Pages/Orders";
+import AdminOrders from "./Pages/AdminOrders";
+import AdminDashboard from "./Pages/AdminDashboard";
+import AdminShops from "./Pages/AdminShops";
 
 
 function App() {
@@ -61,7 +65,7 @@ function removeFromWishlist(product) {
     setMessage(`${product.name} removed from wishlist!`);
 }
 
-   return (
+  return (
     <>
         {message && (
             <div className={`toast-message ${
@@ -75,10 +79,10 @@ function removeFromWishlist(product) {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
 
+            {/* Store Layout */}
             <Route
                 element={<MainLayout onCategoryChange={setSelectedCategory} />}
             >
-
                 <Route
                     path="/"
                     element={
@@ -94,9 +98,7 @@ function removeFromWishlist(product) {
 
                 <Route
                     path="/cart"
-                    element={
-                        <YourCart setMessage={setMessage}/>
-                    }
+                    element={<YourCart setMessage={setMessage} />}
                 />
 
                 <Route
@@ -109,10 +111,24 @@ function removeFromWishlist(product) {
                     }
                 />
 
-                <Route path="/product/:id" element={<ProductDetails  setMessage={setMessage} addToWishlist={addToWishlist}/>}/>
-                <Route path="/checkout" element={<Checkout />} />   
+                <Route
+                    path="/product/:id"
+                    element={
+                        <ProductDetails
+                            setMessage={setMessage}
+                            addToWishlist={addToWishlist}
+                        />
+                    }
+                />
+
+                <Route path="/checkout" element={<Checkout />} />
+                <Route path="/orders" element={<MyOrders />} />
             </Route>
+
             
+            <Route path="/admin/orders" element={<AdminOrders />} />
+            <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/admin/shops" element={<AdminShops />} />
 
         </Routes>
     </>
