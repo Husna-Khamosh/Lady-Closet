@@ -144,6 +144,47 @@ input:focus {
     z-index: 100;
 }
 
+
+
+.center-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.shops-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+
+    text-decoration: none;
+    color: #123E5C;
+    padding: 8px 20px;
+    border-radius: 10px;
+    transition: 0.3s ease;
+}
+
+.shops-link svg {
+    color: #123E5C;
+    margin-bottom: 2px;
+}
+
+.shops-link span {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.shops-link small {
+    font-size: 11px;
+    color: #64748b;
+}
+
+.shops-link:hover {
+    background-color: #eef6fa;
+}
+
 .left-side-header {
     flex: 1;
     min-width: 0;
@@ -211,8 +252,46 @@ input:focus {
     color: #21516f;
 }
 
+
 .right-side-header {
     flex-shrink: 0;
+}
+
+.center-header {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.shops-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+
+    text-decoration: none;
+    color: #123E5C;
+    padding: 8px 20px;
+    border-radius: 10px;
+    transition: 0.3s ease;
+}
+
+.shops-link span {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.shops-link small {
+    font-size: 11px;
+    color: #64748b;
+}
+
+.shops-link:hover {
+    background-color: #eef6fa;
 }
 
 .right-side-header ul {
@@ -1813,6 +1892,8 @@ border-color: #21516f;
 }
 
 
+
+
 /*payment page*/
 
 
@@ -1857,9 +1938,7 @@ border-color: #21516f;
     margin-right: 9px;
 }
 
-/* =========================
-   Main Checkout Layout
-========================= */
+
 
 .payment-container {
     display: grid;
@@ -1869,9 +1948,6 @@ border-color: #21516f;
     align-items: start;
 }
 
-/* =========================
-   Delivery Address
-========================= */
 
 .payment-left {
     box-sizing: border-box;
@@ -1959,9 +2035,7 @@ border-color: #21516f;
     background-color: #e7f1f7;
 }
 
-/* =========================
-   Order Summary
-========================= */
+
 
 .payment-right {
     box-sizing: border-box;
@@ -2056,7 +2130,6 @@ border-color: #21516f;
     font-weight: 500;
 }
 
-/* Total */
 
 .total-price {
     display: flex;
@@ -2099,9 +2172,6 @@ border-color: #21516f;
     margin: 0;
 }
 
-/* =========================
-   Responsive
-========================= */
 
 @media (max-width: 900px) {
     .payment-container {

@@ -2,6 +2,7 @@ import React from "react";
 import "../CSS/store.css";
 import { Link } from "react-router-dom";
 import { useCart } from "../Context/CartContext";
+import { Store } from "lucide-react";
 
 
 function Header({ onCategoryChange, showCategories = true, isLoggedIn, onLogout, currentUser }) {
@@ -89,13 +90,19 @@ function Header({ onCategoryChange, showCategories = true, isLoggedIn, onLogout,
 
 
       </div>
-      
+
+      <div className="center-header">
+        <Link to="/sellers" className="shops-link">
+            <Store size={21} strokeWidth={2} />
+            <span>Shops</span>
+            <small>Discover Stores</small>
+        </Link>
+    </div>
+          
 
       <div className="right-side-header">
           <ul>
-                    <li>
-                      <Link to="/sellers">Shops</Link>
-                  </li> 
+      
                     <li>
                       <Link to="/wishlist">WishList</Link>
                     </li>
