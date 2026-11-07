@@ -3,11 +3,14 @@ import React from "react";
 import products from "../Data";
 import "../CSS/sellers.css";
 import { Link, useParams } from "react-router-dom";
+import { useCart } from "../Context/CartContext";
+
 
 function SellerProfile({
     wishlist,
     addToWishlist,
-    removeFromWishlist
+    removeFromWishlist,
+    setMessage
 }) {
 
     const { shopName } = useParams();
@@ -15,6 +18,8 @@ function SellerProfile({
     const sellerProducts = products.filter(function(product) {
         return product.shop === shopName;
     });
+
+    const { addItem } = useCart();
 
     return (
         <div className="seller-page">
@@ -140,7 +145,15 @@ function SellerProfile({
                                     AFN {product.price.toLocaleString()}
                                 </strong>
                             </div>
-
+                            <button
+                                className="add-to-cart-btn"
+                                onClick={function() {
+                                    addItem(product);
+                                    setMessage(`${product.name} added to your cart successfully!`);
+                                }}
+                            >
+                                Add to Cart
+                            </button>
                         </div>
                     );
 

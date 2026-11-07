@@ -185,6 +185,23 @@ input:focus {
     background-color: #eef6fa;
 }
 
+.add-to-cart-btn {
+    width: 100%;
+    padding: 11px;
+    margin-top: 12px;
+    background-color: #123E5C;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #21516f;
+}
 .left-side-header {
     flex: 1;
     min-width: 0;

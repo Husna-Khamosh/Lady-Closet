@@ -201,6 +201,7 @@ function removeFromWishlist(product) {
                             wishlist={wishlist}
                             addToWishlist={addToWishlist}
                             removeFromWishlist={removeFromWishlist}
+                            setMessage={setMessage}
                         />
                     }
                 />
