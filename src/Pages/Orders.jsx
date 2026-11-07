@@ -71,7 +71,7 @@ const orderSteps = [
                             </div>
 
 
-                            {/* Order Products */}
+                          
                             <div className="order-items">
 
                                 {order.items?.map((product, index) => (

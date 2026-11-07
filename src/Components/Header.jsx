@@ -28,107 +28,64 @@ function Header({ onCategoryChange, showCategories = true, isLoggedIn, onLogout,
           />
         </div>
 
-{showCategories && (
-<nav className="left-side-header-bottom">
-  <ul>
-    <li>
-      <a
-        href="#"
-        onClick={(event) => {
-          event.preventDefault();
-          onCategoryChange("All");
-        }}
-      >
-        All Products
-      </a>
-    </li>
+        {showCategories && (
+        <nav className="left-side-header-bottom">
+          <ul>
+            <li>
 
-    <li>
-      <a
-        href="#"
-        onClick={(event) => {
-          event.preventDefault();
-          onCategoryChange("Clothing");
-        }}
-      >
-        Clothing
-      </a>
-    </li>
+              <Link to="/category/All Products">
+                 All Products
+              </Link>
+              
+            </li>
 
-    <li>
-      <a
-        href="#"
-        onClick={(event) => {
-          event.preventDefault();
-          onCategoryChange("Footwear");
-        }}
-      >
-        Footwear
-      </a>
-    </li>
+            <li>
+              <Link to="/category/Clothing">
+                  Clothing
+              </Link>
+              
+            </li>
 
-    <li>
-      <a
-        href="#"
-        onClick={(event) => {
-          event.preventDefault();
-          onCategoryChange("Pants & Jeans");
-        }}
-      >
-        Pants &amp; Jeans
-      </a>
-    </li>
+            <li>
+                <Link to="/category/Footwear">
+                  Footwear
+                </Link>
+            </li>
 
-    <li>
-      <a
-        href="#"
-        onClick={(event) => {
-          event.preventDefault();
-          onCategoryChange("Sneakers");
-        }}
-      >
-        Sneakers
-      </a>
-    </li>
+            <li>
 
-    <li>
-      <a
-        href="#"
-        onClick={(event) => {
-          event.preventDefault();
-          onCategoryChange("Bags");
-        }}
-      >
-        Bags
-      </a>
-    </li>
+                <Link to="/category/Pants & Jeans">
+                  FootwearPants &amp; Jeans
+                </Link>
+            </li>
 
-    <li>
-      <a
-        href="#"
-        onClick={(event) => {
-          event.preventDefault();
-          onCategoryChange("Scarves & Shawls");
-        }}
-      >
-        Scarves &amp; Shawls
-      </a>
-    </li>
+            <li>
+                <Link to="/category/Sneakers">
+                  Sneakers
+                </Link>
+            </li>
 
-    <li>
-      <a
-        href="#"
-        onClick={(event) => {
-          event.preventDefault();
-          onCategoryChange("Accessories");
-        }}
-      >
-        Accessories
-      </a>
-    </li>
-  </ul>
-</nav>
-)}
+            <li>
+                <Link to="/category/Bags">
+                  Bags
+                </Link>
+            </li>
+
+            <li>
+                <Link to="/category/Scarves &amp; Shawls">
+                  Scarves &amp; Shawls
+                </Link>
+            </li>
+
+            <li>
+                <Link to="/category/Accessories">
+                  Accessories
+                </Link>
+            
+            </li>
+          </ul>
+        </nav>
+        )}
 
 
       </div>
@@ -137,9 +94,16 @@ function Header({ onCategoryChange, showCategories = true, isLoggedIn, onLogout,
       <div className="right-side-header">
           <ul>
                     <li>
+                      <Link to="/sellers">Shops</Link>
+                  </li> 
+                    <li>
                       <Link to="/wishlist">WishList</Link>
                     </li>
-                    <li><a href="order.html">Orders</a></li>
+                    <li>
+                        <Link to="/Orders">
+                          Orders
+                        </Link>
+                    </li>
                     <li className="cartheader">
                       <Link to="/cart">
                           🛒 Cart

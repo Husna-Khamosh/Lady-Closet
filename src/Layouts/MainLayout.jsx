@@ -9,7 +9,10 @@ function MainLayout({ onCategoryChange, isLoggedIn, onLogout, currentUser }) {
         <>
             <Header
                 onCategoryChange={onCategoryChange}
-                showCategories={location.pathname === "/"}
+                showCategories={
+                    location.pathname === "/" ||
+                    location.pathname.startsWith("/category/")
+                }
                 isLoggedIn={isLoggedIn}
                 onLogout={onLogout}
                 currentUser={currentUser}

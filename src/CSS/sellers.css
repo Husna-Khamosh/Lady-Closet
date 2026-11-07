@@ -1,0 +1,123 @@
+
+
+.sellers-page {
+    padding: 35px;
+    min-height: 100vh;
+    background-color: #f5f7f9;
+}
+
+.sellers-page h2 {
+    color: #123E5C;
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.sellers-page > p {
+    color: #64748b;
+    margin-bottom: 30px;
+    font-size: 14px;
+}
+
+.sellers-container {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.seller-card {
+    background-color: white;
+    padding: 25px 20px;
+    border-radius: 16px;
+    text-align: center;
+    border: 1px solid #e2e8f0;
+    transition: 0.3s ease;
+}
+
+.seller-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(18, 62, 92, 0.10);
+}
+
+.seller-card-logo {
+    width: 65px;
+    height: 65px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    background-color: #123E5C;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.seller-card h3 {
+    color: #123E5C;
+    font-size: 17px;
+    margin-bottom: 8px;
+}
+
+.seller-card p {
+    color: #64748b;
+    font-size: 13px;
+    margin-bottom: 18px;
+}
+
+.seller-card a {
+    display: inline-block;
+    text-decoration: none;
+    background-color: #123E5C;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 13px;
+    transition: 0.3s;
+}
+
+.seller-card a:hover {
+    background-color: #21516f;
+}
+
+
+.back-to-shops {
+    display: inline-block;
+    text-decoration: none;
+    color: #123E5C;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 18px;
+    padding: 9px 15px;
+    border: 1px solid #dce6ec;
+    border-radius: 8px;
+    transition: 0.3s ease;
+}
+
+.back-to-shops:hover {
+    background-color: #123E5C;
+    color: white;
+}
+
+
+@media (max-width: 1000px) {
+    .sellers-container {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 700px) {
+    .sellers-page {
+        padding: 20px;
+    }
+
+    .sellers-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+}
+
+@media (max-width: 450px) {
+    .sellers-container {
+        grid-template-columns: 1fr;
+    }
+}

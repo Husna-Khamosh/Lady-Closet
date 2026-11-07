@@ -14,6 +14,9 @@ import MyOrders from "./Pages/Orders";
 import AdminOrders from "./Pages/AdminOrders";
 import AdminDashboard from "./Pages/AdminDashboard";
 import AdminShops from "./Pages/AdminShops";
+import CategoryPage from "./Pages/CategoryPage";
+import SellerProfile from "./Pages/SellerProfile";
+import Sellers from "./Pages/Sellers";
 
 
 function App() {
@@ -43,10 +46,21 @@ function App() {
 
 
     const [wishlist, setWishlist] = useState(function () {
-    const savedWishlist = localStorage.getItem("wishlist");
-    return savedWishlist ? JSON.parse(savedWishlist) : [];
 
-    });
+    try {
+        const savedWishlist = JSON.parse(
+            localStorage.getItem("wishlist") || "[]"
+        );
+
+        return Array.isArray(savedWishlist)
+            ? savedWishlist
+            : [];
+
+    } catch {
+        return [];
+    }
+
+});
 
     useEffect(function () {
 
@@ -117,7 +131,7 @@ function removeFromWishlist(product) {
             />
             <Route path="/register" element={<Register />} />
 
-            {/* Store Layout */}
+            
             <Route
                 element={
                     <MainLayout
@@ -168,12 +182,36 @@ function removeFromWishlist(product) {
 
                 <Route path="/checkout" element={<Checkout />} />
                 <Route path="/orders" element={<MyOrders />} />
+                <Route
+                path="/category/:category"
+                element={
+                    <CategoryPage
+                        wishlist={wishlist}
+                        addToWishlist={addToWishlist}
+                        removeFromWishlist={removeFromWishlist}
+                        setMessage={setMessage}
+                    />
+                }
+                />
+
+                <Route
+                    path="/seller/:shopName"
+                    element={
+                        <SellerProfile
+                            wishlist={wishlist}
+                            addToWishlist={addToWishlist}
+                            removeFromWishlist={removeFromWishlist}
+                        />
+                    }
+                />
+                <Route path="/sellers" element={<Sellers />} />
             </Route>
 
             
             <Route path="/admin/orders" element={<AdminOrders />} />
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/admin/shops" element={<AdminShops />} />
+            
 
         </Routes>
     </>
