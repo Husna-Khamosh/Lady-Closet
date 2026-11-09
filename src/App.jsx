@@ -20,6 +20,23 @@ import Sellers from "./Pages/Sellers";
 import CustomerDashboard from "./Pages/CustomerDashboard";
 
 
+
+function getSavedWishlist(email) {
+    const wishlistKey = email
+        ? `wishlist_${email.toLowerCase()}`
+        : "wishlist_guest";
+
+    try {
+        const savedWishlist = JSON.parse(
+            localStorage.getItem(wishlistKey) || "[]"
+        );
+
+        return Array.isArray(savedWishlist) ? savedWishlist : [];
+    } catch {
+        return [];
+    }
+}
+
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(
     localStorage.getItem("isLoggedIn") === "true"
@@ -33,6 +50,8 @@ function App() {
     localStorage.setItem("isLoggedIn", "true");
     localStorage.setItem("currentUser", JSON.stringify(user));
 
+    setWishlist(getSavedWishlist(user.email));
+
     setIsLoggedIn(true);
     setCurrentUser(user);
     }
@@ -40,34 +59,28 @@ function App() {
     function handleLogout() {
     localStorage.removeItem("isLoggedIn");
     localStorage.removeItem("currentUser");
-
+    
+    setWishlist(getSavedWishlist(null));
+    
     setIsLoggedIn(false);
     setCurrentUser(null);
 }   
 
 
-    const [wishlist, setWishlist] = useState(function () {
-
-    try {
-        const savedWishlist = JSON.parse(
-            localStorage.getItem("wishlist") || "[]"
-        );
-
-        return Array.isArray(savedWishlist)
-            ? savedWishlist
-            : [];
-
-    } catch {
-        return [];
-    }
-
+    const [wishlist, setWishlist] = useState(() => {
+    return getSavedWishlist(currentUser?.email);
 });
 
-    useEffect(function () {
+    useEffect(() => {
+    const wishlistKey = currentUser?.email
+        ? `wishlist_${currentUser.email.toLowerCase()}`
+        : "wishlist_guest";
 
-    localStorage.setItem("wishlist", JSON.stringify(wishlist));
-
-}, [wishlist]);
+    localStorage.setItem(
+        wishlistKey,
+        JSON.stringify(wishlist)
+    );
+}, [wishlist, currentUser?.email]);
 
     const [message, setMessage] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("All");
@@ -221,6 +234,7 @@ function removeFromWishlist(product) {
                                 <CustomerDashboard
                                     currentUser={currentUser}
                                     wishlist={wishlist}
+                                    onRemoveFromWishlist={removeFromWishlist}
                                 />
                             ) : (
                                 <Navigate to="/login" replace />

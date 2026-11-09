@@ -3,12 +3,18 @@ import React, { useState, useEffect } from "react";
 import CustomerSidebar from "../Components/CustomerSidebar";
 import "../CSS/CustomerDashboard.css";
 
-function CustomerDashboard({ currentUser, wishlist  }) {
+function CustomerDashboard({ currentUser, wishlist, onRemoveFromWishlist  }) {
 
     const [activeTab, setActiveTab] = useState("overview");
     const [orders, setOrders] = useState([]);
     const [addresses, setAddresses] = useState([]);
-    useEffect(() => {
+
+    const [profileImage, setProfileImage] = useState(
+    currentUser?.profileImage || "/images/woman.png"
+    );
+
+    const [selectedImage, setSelectedImage] = useState(null);
+        useEffect(() => {
 
     if (!currentUser?.email) {
         setAddresses([]);
@@ -50,6 +56,57 @@ function CustomerDashboard({ currentUser, wishlist  }) {
     };
 }, [currentUser]);
 
+    function handleImageChange(event) {
+        const file = event.target.files[0];
+
+        if (!file) return;
+        if (!file.type.startsWith("image/")) {
+            alert("Please select a valid image.");
+            return;
+        }
+
+        const reader = new FileReader();
+
+        reader.onload = function () {
+            setSelectedImage(reader.result);
+        };
+
+        reader.readAsDataURL(file);
+    }
+
+    function handleSaveProfile() {
+
+    const updatedUser = {
+        ...currentUser,
+        profileImage: selectedImage || profileImage
+    };
+
+    const savedUsers = JSON.parse(
+        localStorage.getItem("users") || "[]"
+    );
+
+    const updatedUsers = savedUsers.map(function (user) {
+        return user.email.toLowerCase() ===
+            currentUser.email.toLowerCase()
+            ? updatedUser
+            : user;
+    });
+
+    localStorage.setItem(
+        "users",
+        JSON.stringify(updatedUsers)
+    );
+
+    localStorage.setItem(
+        "currentUser",
+        JSON.stringify(updatedUser)
+    );
+
+    setProfileImage(updatedUser.profileImage);
+    setSelectedImage(null);
+
+    alert("Profile updated successfully!");
+}
     return (
         <div className="customer-dashboard">
 
@@ -134,10 +191,68 @@ function CustomerDashboard({ currentUser, wishlist  }) {
                 )}
 
                 {activeTab === "profile" && (
-                    <div>
-                        <h3>My Profile</h3>
-                    </div>
-                )}
+                        <div className="customer-profile">
+
+                            <div className="profile-header">
+                                <h3>My Profile</h3>
+                                <p>Manage your personal information.</p>
+                            </div>
+
+                            <div className="profile-card">
+
+                                <div className="profile-avatar">
+
+                                    <img
+                                        src={selectedImage || profileImage}
+                                        alt="Customer Profile"
+                                    />
+
+                                    <label htmlFor="profile-image">
+                                        Change Photo
+                                    </label>
+
+                                    <input
+                                        type="file"
+                                        id="profile-image"
+                                        accept="image/*"
+                                        onChange={handleImageChange}
+                                        hidden
+                                    />
+
+                                </div>
+
+                                <div className="profile-form">
+
+                                    <div className="profile-input-group">
+                                        <label>Full Name</label>
+                                        <input
+                                            type="text"
+                                            value={currentUser?.fullName || ""}
+                                            readOnly
+                                        />
+                                    </div>
+
+                                    <div className="profile-input-group">
+                                        <label>Email Address</label>
+                                        <input
+                                            type="email"
+                                            value={currentUser?.email || ""}
+                                            readOnly
+                                        />
+                                    </div>
+
+                                    <button
+                                        type="button"
+                                        onClick={handleSaveProfile}
+                                    >
+                                        Save Changes
+                                    </button>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    )}
 
                 {activeTab === "orders" && (
                     <div className="my-orders-section">
@@ -238,8 +353,56 @@ function CustomerDashboard({ currentUser, wishlist  }) {
                 )}
 
                 {activeTab === "wishlist" && (
-                    <div>
-                        <h3>My Wishlist</h3>
+                    <div className="customer-wishlist">
+
+                        <div className="wishlist-header">
+                            <h3>My Wishlist</h3>
+                            <p>{wishlist.length} products saved</p>
+                        </div>
+
+                        {wishlist.length === 0 ? (
+                            <div className="empty-wishlist">
+                                <h4>Your wishlist is empty!</h4>
+                                <p>Products you save will appear here.</p>
+                            </div>
+                        ) : (
+                            <div className="customer-wishlist-grid">
+
+                                {wishlist.map((product) => (
+                                    <div className="customer-wishlist-card" key={product.id}>
+
+                                        <img
+                                            src={product.image}
+                                            alt={product.name}
+                                        />
+
+                                        <div className="wishlist-product-info">
+
+                                            <h4>{product.name}</h4>
+
+                                            <p className="wishlist-shop">
+                                                {product.shop}
+                                            </p>
+
+                                            <p className="wishlist-price">
+                                                AFN {Number(product.price).toLocaleString()}
+                                            </p>
+
+                                            <button
+                                                type="button"
+                                                onClick={() => onRemoveFromWishlist(product)}
+                                            >
+                                                Remove
+                                            </button>
+
+                                        </div>
+
+                                    </div>
+                                ))}
+
+                            </div>
+                        )}
+
                     </div>
                 )}
 
