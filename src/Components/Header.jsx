@@ -7,7 +7,9 @@ import { Store } from "lucide-react";
 
 function Header({ onCategoryChange, showCategories = true, isLoggedIn, onLogout, currentUser }) {
   const { cart } = useCart();
-  const cartCount = cart.length;
+  const cartCount = cart.reduce(function(total, item) {
+    return total + (Number(item.quantity) || 1);
+}, 0);
   return (
     <header className="store-header">
       <div className="left-side-header">

@@ -3329,11 +3329,7 @@ border-color: #21516f;
         font-size: 10px;
     }
 
-    .right-side-header .auth-links {
-        width: 28px;
-        height: 28px;
-        font-size: 10px;
-    }
+   
     
 }
 
@@ -3773,12 +3769,7 @@ border-color: #21516f;
         font-size: 10px;
     }
 
-    .right-side-header .auth-links {
-        width: 28px;
-        height: 28px;
-        font-size: 10px;
-        
-    }
+
 
     .category-top {
         width: calc(100% - 30px);
@@ -3845,6 +3836,103 @@ border-color: #21516f;
     .popluar-week-cart .price-row {
         margin-left: 10px;
         margin-right: 10px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+
+    .store-header {
+        flex-wrap: wrap;
+        gap: 15px;
+        padding: 12px 18px;
+    }
+
+    .center-header {
+        position: static;
+        transform: none;
+        flex: 1 1 100%;
+        order: 3;
+        justify-content: center;
+    }
+
+    .shops-link {
+        flex-direction: row;
+        gap: 8px;
+        padding: 10px 18px;
+    }
+
+    .shops-link small {
+        display: none;
+    }
+    
+}
+
+
+/* Responsive Auth Links */
+
+@media screen and (max-width: 900px) {
+
+    .right-side-header {
+        flex-shrink: 0;
+        width: auto;
+    }
+
+    .right-side-header ul {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        flex-wrap: nowrap;
+        gap: 10px;
+        white-space: nowrap;
+    }
+
+    .right-side-header .auth-links {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        width: auto;
+        height: auto;
+        flex-shrink: 0;
+    }
+
+    .right-side-header .auth-links a {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        padding: 8px 12px;
+        min-height: 34px;
+        box-sizing: border-box;
+        border-radius: 7px;
+        font-size: 11px;
+        white-space: nowrap;
+    }
+
+    .right-side-header .auth-links a:first-child {
+        border: 1px solid #123E5C;
+        color: #123E5C;
+    }
+
+    .right-side-header .auth-links a:last-child {
+        border: 1px solid #123E5C;
+        background-color: #123E5C;
+        color: white;
+    }
+}
+
+@media screen and (max-width: 600px) {
+
+    .right-side-header ul {
+        gap: 6px;
+    }
+
+    .right-side-header .auth-links {
+        gap: 5px;
+    }
+
+    .right-side-header .auth-links a {
+        padding: 7px 9px;
+        font-size: 10px;
+        min-height: 31px;
     }
 }
 

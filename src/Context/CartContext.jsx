@@ -95,6 +95,11 @@ useEffect(function () {
         });
     }
 
+    // Clear Cart
+        function clearCart() {
+            setCart([]);
+        }
+
     // Calculate total
     const total = cart.reduce(function (sum, product) {
 
@@ -111,7 +116,8 @@ useEffect(function () {
                 addItem,
                 updateQuantity,
                 removeItem,
-                total
+                total,
+                clearCart,
             }}
         >
             {children}

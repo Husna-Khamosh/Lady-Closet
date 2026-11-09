@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 
 function Checkout() {
-    const { cart } = useCart();
+    const { cart, clearCart } = useCart();
     const navigate = useNavigate();
     const [selectedAddress, setSelectedAddress] = useState("");
     const [discountCode, setDiscountCode] = useState("");
@@ -223,7 +223,8 @@ function Checkout() {
         "orders",
         JSON.stringify(updatedOrders)
     );
-
+    // clear the cart 
+    clearCart();
     alert("Order placed successfully!");
     navigate("/orders");
 }
