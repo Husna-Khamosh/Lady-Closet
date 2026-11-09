@@ -2,19 +2,27 @@
 import React, { useState, useEffect } from "react";
 import "../CSS/Store.css";
 
-function MyOrders() {
+function MyOrders({currentUser }) {
 
     const [orders, setOrders] = useState([]);
 
    useEffect(() => {
 
     function loadOrders() {
+        
         const savedOrders = JSON.parse(
             localStorage.getItem("orders")
         ) || [];
 
-        setOrders(savedOrders);
-    }
+        const userOrders = savedOrders.filter(function (order) {
+            return (
+                order.customerEmail?.toLowerCase() ===
+                currentUser?.email?.toLowerCase()
+            );
+        });
+
+        setOrders(userOrders);
+            }
 
     loadOrders();
 
@@ -25,6 +33,13 @@ function MyOrders() {
     };
 
 }, []);
+
+const userOrders = orders.filter((order) => {
+    return (
+        order.customerEmail?.toLowerCase() ===
+        currentUser?.email?.toLowerCase()
+    );
+});
 
 const orderSteps = [
     "Processing",
@@ -39,13 +54,13 @@ const orderSteps = [
 
             <div className="orders-container">
 
-                {orders.length === 0 ? (
+                {userOrders.length === 0 ? (
 
                     <p>You haven't placed any orders yet.</p>
 
                 ) : (
 
-                    orders.map((order) => (
+                    userOrders.map((order)  => (
 
                         <div className="order-card" key={order.id}>
 

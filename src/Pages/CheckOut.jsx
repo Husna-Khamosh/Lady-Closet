@@ -5,7 +5,8 @@ import { AlignRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 
-function Checkout() {
+
+function Checkout({currentUser }) {
     const { cart, clearCart } = useCart();
     const navigate = useNavigate();
     const [selectedAddress, setSelectedAddress] = useState("");
@@ -23,36 +24,29 @@ function Checkout() {
     const [formErrors, setFormErrors] = useState({});
 
     const [addresses, setAddresses] = useState(() => {
-        const savedAddresses = localStorage.getItem("deliveryAddresses");
+    const addressKey = `deliveryAddresses_${currentUser?.email}`;
+
+    const savedAddresses = localStorage.getItem(addressKey);
 
         if (savedAddresses) {
             return JSON.parse(savedAddresses);
         }
 
         return [
-            {
-                id: 1,
-                title: "Home",
-                name: "Omid Ranjbar",
-                address: "House 14, Street 3, Shar-e-naw, Kabul",
-                phone: "+93700123456"
-            },
-            {
-                id: 2,
-                title: "Office",
-                name: "Omid Ranjbar",
-                address: "Kabul, Afghanistan",
-                phone: "+93700123456"
-            }
+            
         ];
     });
 
     useEffect(() => {
-        localStorage.setItem(
-            "deliveryAddresses",
-            JSON.stringify(addresses)
-        );
-    }, [addresses]);
+    if (!currentUser?.email) return;
+
+    const addressKey = `deliveryAddresses_${currentUser.email}`;
+
+    localStorage.setItem(
+        addressKey,
+        JSON.stringify(addresses)
+    );
+}, [addresses, currentUser]);
 
     // Cart Count
     const cartCount = cart.reduce((total, product) => {
@@ -189,6 +183,8 @@ function Checkout() {
         id: "ORD-" + Date.now(),
 
         date: new Date().toISOString(),
+        customerEmail: currentUser?.email,
+        customerName: currentUser?.fullName,
 
         items: cart.map((product) => ({
             ...product,

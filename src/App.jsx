@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route,Navigate } from "react-router-dom";
 import MainLayout from "./Layouts/MainLayout";
 
 
@@ -17,6 +17,7 @@ import AdminShops from "./Pages/AdminShops";
 import CategoryPage from "./Pages/CategoryPage";
 import SellerProfile from "./Pages/SellerProfile";
 import Sellers from "./Pages/Sellers";
+import CustomerDashboard from "./Pages/CustomerDashboard";
 
 
 function App() {
@@ -179,9 +180,16 @@ function removeFromWishlist(product) {
                         />
                     }
                 />
-
-                <Route path="/checkout" element={<Checkout />} />
-                <Route path="/orders" element={<MyOrders />} />
+                <Route
+                    path="/checkout"
+                    element={
+                        <Checkout currentUser={currentUser} />
+                    }
+                />
+                <Route
+                    path="/orders"
+                    element={<MyOrders currentUser={currentUser} />}
+                />
                 <Route
                 path="/category/:category"
                 element={
@@ -206,6 +214,19 @@ function removeFromWishlist(product) {
                     }
                 />
                 <Route path="/sellers" element={<Sellers />} />
+                <Route
+                        path="/account"
+                        element={
+                            isLoggedIn ? (
+                                <CustomerDashboard
+                                    currentUser={currentUser}
+                                    wishlist={wishlist}
+                                />
+                            ) : (
+                                <Navigate to="/login" replace />
+                            )
+                        }
+                    />
             </Route>
 
             

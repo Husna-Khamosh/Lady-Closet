@@ -14,16 +14,21 @@ function Header({ onCategoryChange, showCategories = true, isLoggedIn, onLogout,
     <header className="store-header">
       <div className="left-side-header">
         <div className="left-side-header-top">
-          <img
-            src="/images/woman.png"
-            alt="Husna Khamosh"
-          />
+          <Link to={isLoggedIn ? "/account" : "/login"}
+              className="profile-link">
 
-          <span>
-              {isLoggedIn && currentUser
-                  ? currentUser.fullName
-                  : "Guest"}
-          </span>
+            <img
+                src={currentUser?.profileImage || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTws7pooogCH-1Oh_b7lGn_7JCtR66mu_jIiKMvidXbvg&s"}
+                alt="Customer Profile"
+            />
+
+            <span>
+                {isLoggedIn && currentUser
+                    ? currentUser.fullName
+                    : "Guest"}
+            </span>
+
+        </Link>
 
           <input
             type="search"

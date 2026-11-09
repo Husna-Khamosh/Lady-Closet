@@ -70,7 +70,8 @@ function Register() {
             const newUser = {
                 fullName: fullName.trim(),
                 email: email.trim(),
-                password: password
+                password: password,
+                profileImage: ""
             };
 
             const updatedUsers = [...savedUsers, newUser];
