@@ -16,6 +16,14 @@ function Register() {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
+
+{/*بخش راجستر کردن ویندور */}
+    const [accountType, setAccountType] = useState("customer");
+    const [shopName, setShopName] = useState("");
+    const [shopDescription, setShopDescription] = useState("");
+    const [phone, setPhone] = useState("");
+    const [businessAddress, setBusinessAddress] = useState("");
+
     const handleSubmit = (event) => {
         event.preventDefault();
 
@@ -46,6 +54,25 @@ function Register() {
             newErrors.terms = "Please accept the Terms & Conditions.";
         }
 
+        if (accountType === "vendor") {
+
+        if (!shopName.trim()) {
+            newErrors.shopName = "Shop name is required.";
+        }
+
+        if (!shopDescription.trim()) {
+            newErrors.shopDescription = "Shop description is required.";
+        }
+
+        if (!phone.trim()) {
+            newErrors.phone = "Contact number is required.";
+        }
+
+        if (!businessAddress.trim()) {
+            newErrors.businessAddress = "Business address is required.";
+        }
+    }
+
         setErrors(newErrors);
 
         if (Object.keys(newErrors).length === 0) {
@@ -72,7 +99,15 @@ function Register() {
                 email: email.trim().toLowerCase(),
                 password: password,
                 profileImage: "",
-                role: "customer"
+                role: accountType,
+
+                ...(accountType === "vendor" && {
+                    shopName: shopName.trim(),
+                    shopDescription: shopDescription.trim(),
+                    phone: phone.trim(),
+                    businessAddress: businessAddress.trim(),
+                    vendorStatus: "pending"
+                })
             };
 
             const updatedUsers = [...savedUsers, newUser];
@@ -120,6 +155,27 @@ function Register() {
                             <p>Sign Up to Start Shopping!</p>
                         </div>
 
+                        <div className="account-type-selection">
+                            <label>Choose Account Type</label>
+                            <div className="account-type-options">
+                                <button
+                                    type="button"
+                                    className={accountType === "customer" ? "active" : ""}
+                                    onClick={() => setAccountType("customer")}
+                                >
+                                    <span>Customer</span>
+                                    <small>Shop your favorite products</small>
+                                </button>
+                                <button
+                                    type="button"
+                                    className={accountType === "vendor" ? "active" : ""}
+                                    onClick={() => setAccountType("vendor")}
+                                >
+                                    <span>Vendor</span>
+                                    <small>Create and manage your shop</small>
+                                </button>
+                            </div>
+                        </div>
                         {successMessage && (
                             <p className="success-message">{successMessage}</p>
                         )}
@@ -203,6 +259,63 @@ function Register() {
                                     <p className="error-message">{errors.confirmPassword}</p>
                                 )}
                             </div>
+
+                            {accountType === "vendor" && (
+                                <div className="vendor-register-fields">
+
+                                    <div className="register-input">
+                                        <label>Shop Name</label>
+                                        <input
+                                            type="text"
+                                            placeholder="Enter your shop name"
+                                            value={shopName}
+                                            onChange={(event) => setShopName(event.target.value)}
+                                        />
+                                        {errors.shopName && (
+                                            <p className="error-message">{errors.shopName}</p>
+                                        )}
+                                    </div>
+
+                                    <div className="register-input">
+                                        <label>Shop Description</label>
+                                        <textarea
+                                            placeholder="Describe your shop..."
+                                            value={shopDescription}
+                                            onChange={(event) => setShopDescription(event.target.value)}
+                                        />
+                                        {errors.shopDescription && (
+                                            <p className="error-message">{errors.shopDescription}</p>
+                                        )}
+                                    </div>
+
+                                    <div className="register-input">
+                                        <label>Contact Number</label>
+                                        <input
+                                            type="tel"
+                                            placeholder="Enter your phone number"
+                                            value={phone}
+                                            onChange={(event) => setPhone(event.target.value)}
+                                        />
+                                        {errors.phone && (
+                                            <p className="error-message">{errors.phone}</p>
+                                        )}
+                                    </div>
+
+                                    <div className="register-input">
+                                        <label>Business Address</label>
+                                        <input
+                                            type="text"
+                                            placeholder="Enter your business address"
+                                            value={businessAddress}
+                                            onChange={(event) => setBusinessAddress(event.target.value)}
+                                        />
+                                        {errors.businessAddress && (
+                                            <p className="error-message">{errors.businessAddress}</p>
+                                        )}
+                                    </div>
+
+                                </div>
+                            )}
 
                         </div>
 

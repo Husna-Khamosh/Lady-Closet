@@ -7,6 +7,39 @@ import products from "../Data";
 
 function AdminDashboard() {
 
+    function loadPendingVendors() {
+    const savedUsers = JSON.parse(
+        localStorage.getItem("users") || "[]"
+    );
+
+    const pendingVendors = savedUsers.filter(function(user) {
+        return (
+            user.role === "vendor" &&
+            (user.vendorStatus || "pending") === "pending"
+        );
+    });
+    console.log("Pending vendors:", pendingVendors);
+    setPendingVendorCount(pendingVendors.length);
+}
+
+    const [pendingVendorCount, setPendingVendorCount] = useState(0);
+
+        useEffect(() => {
+
+            loadPendingVendors();
+
+            window.addEventListener("storage", loadPendingVendors);
+            window.addEventListener("focus", loadPendingVendors);
+            window.addEventListener("vendorsUpdated", loadPendingVendors);
+
+            return function() {
+                window.removeEventListener("storage", loadPendingVendors);
+                window.removeEventListener("focus", loadPendingVendors);
+                window.removeEventListener("vendorsUpdated", loadPendingVendors);
+            };
+
+        }, []);
+
     return (
     <div className="admin-container">
         <aside className="admin-sidebar">
@@ -21,6 +54,12 @@ function AdminDashboard() {
                 <Link to="/admin">Dashboard</Link>
                 <Link to="/admin/orders">Orders</Link>
                 <Link to="/admin/shops">Shops</Link>
+                <Link to="/admin/vendors">
+                    Vendor Applications
+                    <span className="pending-count">
+                        {pendingVendorCount}
+                    </span>
+                </Link>
                 <Link to="/admin/users">Customers</Link>
                 <Link to="/admin/categories">Categories</Link>
                 <Link to="/admin/commission">Commission</Link>

@@ -19,7 +19,8 @@ import SellerProfile from "./Pages/SellerProfile";
 import Sellers from "./Pages/Sellers";
 import CustomerDashboard from "./Pages/CustomerDashboard";
 import VendorDashboard from "./Pages/VendorDashboard";
-
+import AdminVendors from "./Pages/AdminVendors";
+import MyProducts from "./Pages/MyProducts";
 
 
 function getSavedWishlist(email) {
@@ -89,6 +90,50 @@ function App() {
     setCurrentUser(null);
 }   
 
+
+useEffect(() => {
+
+    function syncCurrentUser() {
+
+        const savedCurrentUser = JSON.parse(
+            localStorage.getItem("currentUser") || "null"
+        );
+
+        if (!savedCurrentUser?.email) {
+            return;
+        }
+
+        const savedUsers = JSON.parse(
+            localStorage.getItem("users") || "[]"
+        );
+
+        const latestUser = savedUsers.find(function(user) {
+            return (
+                user.email?.toLowerCase() ===
+                savedCurrentUser.email.toLowerCase()
+            );
+        });
+
+        if (latestUser) {
+
+            localStorage.setItem(
+                "currentUser",
+                JSON.stringify(latestUser)
+            );
+
+            setCurrentUser(latestUser);
+        }
+    }
+
+    window.addEventListener("storage", syncCurrentUser);
+    window.addEventListener("focus", syncCurrentUser);
+
+    return function() {
+        window.removeEventListener("storage", syncCurrentUser);
+        window.removeEventListener("focus", syncCurrentUser);
+    };
+
+}, []);
 
     const [wishlist, setWishlist] = useState(() => {
     return getSavedWishlist(currentUser?.email);
@@ -253,6 +298,7 @@ function removeFromWishlist(product) {
                 <Route
                         path="/account"
                         element={
+                            
                             <RoleRoute
                                 user={currentUser}
                                 allowedRole="customer"
@@ -304,7 +350,23 @@ function removeFromWishlist(product) {
                     </RoleRoute>
                 }
             />
+            <Route
+                path="/admin/vendors"
+                element={
+                    <RoleRoute user={currentUser} allowedRole="admin">
+                        <AdminVendors />
+                    </RoleRoute>
+                }
+            />
 
+            <Route
+                path="/vendor/products"
+                element={
+                    <RoleRoute user={currentUser} allowedRole="vendor">
+                        <MyProducts currentUser={currentUser} />
+                    </RoleRoute>
+                }
+            />
         </Routes>
     </>
 );

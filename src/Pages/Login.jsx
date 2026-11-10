@@ -42,6 +42,16 @@ function Login({onLogin}) {
         localStorage.getItem("users")
     ) || [];
 
+
+    const account = savedUsers.find(function(user) {
+    return user.email?.trim().toLowerCase() === email.trim().toLowerCase();
+});
+
+console.log("Account found:", Boolean(account));
+console.log("Password matches:", account?.password === password);
+console.log("Selected role:", selectedRole);
+
+
     const currentUser = savedUsers.find(function (user) {
     return (
         user.email.trim().toLowerCase() === email.trim().toLowerCase() &&

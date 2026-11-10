@@ -2557,7 +2557,15 @@ img {
 .view-shop-btn:hover {
     background: #dcecf6;
 }
-
+.pending-count {
+    background-color: #eaf3f9;
+    color: #123E5C;
+    padding: 3px 8px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-left: 8px;
+}
 @media (max-width: 1000px) {
     .admin-sidebar {
         width: 220px;

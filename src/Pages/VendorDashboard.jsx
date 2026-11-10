@@ -1,8 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
 import "../CSS/VendorDashboard.css";
+import products from "../Data";
+import { Link } from "react-router-dom";
 
 function VendorDashboard({ currentUser }) {
+    const [savedProducts, setSavedProducts] = useState(() => {
+    return JSON.parse(
+        localStorage.getItem("vendorProducts") || "[]"
+    );
+});
+    
+    const vendorProducts = savedProducts.filter(function(product) {
+    return product.shop === currentUser.shopName;
+    });
 
+    if (currentUser.vendorStatus === "pending") {
+    return (
+        <div className="vendor-pending">
+            <h2>Your Shop Application is Under Review</h2>
+
+            <p>
+                Your registration has been submitted successfully.
+                Our admin team will review your application.
+            </p>
+
+            <span>Application Status: Pending</span>
+        </div>
+    );
+}
+
+if (currentUser.vendorStatus === "rejected") {
+    return (
+        <div className="vendor-rejected">
+            <h2>Your Application Was Rejected</h2>
+
+            <p>
+                Unfortunately, your shop application was not approved.
+                Please contact our support team for more information.
+            </p>
+
+            <span>Application Status: Rejected</span>
+        </div>
+    );
+}
     return (
         <div className="vendor-dashboard">
 
@@ -36,7 +76,7 @@ function VendorDashboard({ currentUser }) {
 
                     <div className="vendor-stat-card">
                         <p>Total Products</p>
-                        <h3>0</h3>
+                        <h3>{vendorProducts.length}</h3>
                     </div>
 
                     <div className="vendor-stat-card">

@@ -223,6 +223,76 @@
     color: #123E5C;
 }
 
+.account-type-selection {
+    margin-bottom: 22px;
+}
+
+.account-type-selection > label {
+    display: block;
+    color: #123e5c;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.account-type-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.account-type-options button {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    padding: 13px;
+    text-align: left;
+    background: #ffffff;
+    border: 1px solid #dce6ec;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.account-type-options button span {
+    color: #123e5c;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.account-type-options button small {
+    color: #84939d;
+    font-size: 11px;
+}
+
+.account-type-options button.active {
+    border-color: #123e5c;
+    background: #eef5f9;
+}
+
+.vendor-register-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.vendor-register-fields textarea {
+    width: 100%;
+    min-height: 85px;
+    padding: 12px;
+    border: 1px solid #dce6ec;
+    border-radius: 8px;
+    resize: vertical;
+    font-family: inherit;
+    font-size: 13px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.vendor-register-fields textarea:focus {
+    border-color: #21516f;
+}
+
 /* Responsive */
 
 @media (max-width: 750px) {
