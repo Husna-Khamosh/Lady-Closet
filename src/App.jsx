@@ -18,6 +18,7 @@ import CategoryPage from "./Pages/CategoryPage";
 import SellerProfile from "./Pages/SellerProfile";
 import Sellers from "./Pages/Sellers";
 import CustomerDashboard from "./Pages/CustomerDashboard";
+import VendorDashboard from "./Pages/VendorDashboard";
 
 
 
@@ -35,6 +36,28 @@ function getSavedWishlist(email) {
     } catch {
         return [];
     }
+}
+
+function RoleRoute({ user, allowedRole, children }) {
+
+    if (!user) {
+        return <Navigate to="/login" replace />;
+    }
+
+    if (user.role !== allowedRole) {
+
+        if (user.role === "admin") {
+            return <Navigate to="/admin" replace />;
+        }
+
+        if (user.role === "vendor") {
+            return <Navigate to="/vendor" replace />;
+        }
+
+        return <Navigate to="/account" replace />;
+    }
+
+    return children;
 }
 
 function App() {
@@ -61,7 +84,7 @@ function App() {
     localStorage.removeItem("currentUser");
     
     setWishlist(getSavedWishlist(null));
-    
+
     setIsLoggedIn(false);
     setCurrentUser(null);
 }   
@@ -230,24 +253,57 @@ function removeFromWishlist(product) {
                 <Route
                         path="/account"
                         element={
-                            isLoggedIn ? (
+                            <RoleRoute
+                                user={currentUser}
+                                allowedRole="customer"
+                            >
                                 <CustomerDashboard
                                     currentUser={currentUser}
                                     wishlist={wishlist}
                                     onRemoveFromWishlist={removeFromWishlist}
                                 />
-                            ) : (
-                                <Navigate to="/login" replace />
-                            )
+                            </RoleRoute>
                         }
                     />
             </Route>
+        
+            
+            <Route
+                path="/admin"
+                element={
+                    <RoleRoute user={currentUser} allowedRole="admin">
+                        <AdminDashboard />
+                    </RoleRoute>
+                }
+            />
 
+            <Route
+                path="/admin/orders"
+                element={
+                    <RoleRoute user={currentUser} allowedRole="admin">
+                        <AdminOrders />
+                    </RoleRoute>
+                }
+            />
+
+            <Route
+                path="/admin/shops"
+                element={
+                    <RoleRoute user={currentUser} allowedRole="admin">
+                        <AdminShops />
+                    </RoleRoute>
+                }
+            />
             
-            <Route path="/admin/orders" element={<AdminOrders />} />
-            <Route path="/admin" element={<AdminDashboard />} />
-            <Route path="/admin/shops" element={<AdminShops />} />
-            
+
+            <Route
+                path="/vendor"
+                element={
+                    <RoleRoute user={currentUser} allowedRole="vendor">
+                        <VendorDashboard currentUser={currentUser} />
+                    </RoleRoute>
+                }
+            />
 
         </Routes>
     </>

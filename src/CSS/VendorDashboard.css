@@ -1,0 +1,161 @@
+.vendor-dashboard {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f4f7f9;
+}
+
+/* Sidebar */
+
+.vendor-sidebar {
+    width: 240px;
+    flex-shrink: 0;
+    background-color: #123e5c;
+    color: #ffffff;
+    padding: 25px 18px;
+    box-sizing: border-box;
+}
+
+.vendor-logo {
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+
+.vendor-logo h2 {
+    font-size: 21px;
+    margin-bottom: 6px;
+}
+
+.vendor-logo p {
+    font-size: 12px;
+    color: #b9cedb;
+}
+
+.vendor-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    margin-top: 30px;
+}
+
+.vendor-menu a {
+    text-decoration: none;
+    color: #dce6ec;
+    padding: 12px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: 0.2s ease;
+}
+
+.vendor-menu a:hover {
+    background-color: #21516f;
+    color: #ffffff;
+}
+
+/* Main Content */
+
+.vendor-main {
+    flex: 1;
+    min-width: 0;
+    padding: 30px;
+}
+
+.vendor-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.vendor-header h2 {
+    color: #123e5c;
+    font-size: 24px;
+    margin-bottom: 7px;
+}
+
+.vendor-header p {
+    color: #84939d;
+    font-size: 13px;
+}
+
+/* Statistics */
+
+.vendor-stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.vendor-stat-card {
+    background-color: #ffffff;
+    padding: 22px 18px;
+    border-radius: 12px;
+    border: 1px solid #e5edf1;
+}
+
+.vendor-stat-card p {
+    color: #84939d;
+    font-size: 13px;
+    margin-bottom: 14px;
+}
+
+.vendor-stat-card h3 {
+    color: #123e5c;
+    font-size: 21px;
+}
+
+/* Welcome Content */
+
+.vendor-content {
+    background-color: #ffffff;
+    margin-top: 25px;
+    padding: 28px;
+    border-radius: 12px;
+    border: 1px solid #e5edf1;
+}
+
+.vendor-content h3 {
+    color: #123e5c;
+    font-size: 19px;
+    margin-bottom: 12px;
+}
+
+.vendor-content p {
+    color: #84939d;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+/* Responsive */
+
+@media (max-width: 1000px) {
+    .vendor-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 650px) {
+    .vendor-dashboard {
+        flex-direction: column;
+    }
+
+    .vendor-sidebar {
+        width: 100%;
+    }
+
+    .vendor-menu {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .vendor-main {
+        padding: 20px 15px;
+    }
+
+    .vendor-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .vendor-header h2 {
+        font-size: 20px;
+    }
+}

@@ -11,6 +11,7 @@ function Login({onLogin}) {
     const [errors, setErrors] = useState({});   
     const [successMessage, setSuccessMessage] = useState("");
     const [showPassword, setShowPassword] = useState(false);
+    const [selectedRole, setSelectedRole] = useState("customer");
 
     const handleSubmit = (event) => {
     event.preventDefault();
@@ -47,24 +48,40 @@ function Login({onLogin}) {
         user.password === password
     );
 });
-
     if (currentUser) {
-        onLogin(currentUser);
-        navigate("/");
 
-
-    } else {
-
+    if (currentUser.role !== selectedRole) {
         setErrors({
-            email: "Invalid email or password."
+            email: "This account does not belong to the selected account type."
         });
 
         setSuccessMessage("");
+        return;
+    }
+
+    onLogin(currentUser);
+
+    if (currentUser.role === "admin") {
+        navigate("/admin");
+    } 
+    else if (currentUser.role === "vendor") {
+        navigate("/vendor");
+    } 
+    else {
+        navigate("/account");
     }
 
 } else {
+
+    setErrors({
+        email: "Invalid email or password."
+    });
+
     setSuccessMessage("");
 }
+    
+
+} 
     }
     return (
         <div className="login-page">
@@ -98,6 +115,36 @@ function Login({onLogin}) {
                         <div className="login-header">
                             <h2>Welcome Back!</h2>
                             <p>Sign In to Continue Shopping!</p>
+                        </div>
+
+                        <div className="login-role">
+                            <label>Select Account Type</label>
+
+                            <div className="role-options">
+                                <button
+                                    type="button"
+                                    className={selectedRole === "customer" ? "active" : ""}
+                                    onClick={() => setSelectedRole("customer")}
+                                >
+                                    Customer
+                                </button>
+
+                                <button
+                                    type="button"
+                                    className={selectedRole === "vendor" ? "active" : ""}
+                                    onClick={() => setSelectedRole("vendor")}
+                                >
+                                    Vendor
+                                </button>
+
+                                <button
+                                    type="button"
+                                    className={selectedRole === "admin" ? "active" : ""}
+                                    onClick={() => setSelectedRole("admin")}
+                                >
+                                    Admin
+                                </button>
+                            </div>
                         </div>
 
                         <div className="login-field">

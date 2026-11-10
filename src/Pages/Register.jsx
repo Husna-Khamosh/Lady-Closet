@@ -55,7 +55,7 @@ function Register() {
             ) || [];
 
             const userExists = savedUsers.some(function (user) {
-                return user.email === email.trim();
+                return user.email.toLowerCase() === email.trim().toLowerCase();
             });
 
             if (userExists) {
@@ -69,9 +69,10 @@ function Register() {
 
             const newUser = {
                 fullName: fullName.trim(),
-                email: email.trim(),
+                email: email.trim().toLowerCase(),
                 password: password,
-                profileImage: ""
+                profileImage: "",
+                role: "customer"
             };
 
             const updatedUsers = [...savedUsers, newUser];

@@ -278,6 +278,45 @@
     color: #2676a8;
 }
 
+.login-role {
+    margin-bottom: 22px;
+}
+
+.login-role > label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #123e5c;
+}
+
+.role-options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.role-options button {
+    padding: 11px 5px;
+    border: 1px solid #dce6ec;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #526b7a;
+    font-size: 13px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.role-options button:hover {
+    border-color: #21516f;
+}
+
+.role-options button.active {
+    background: #123e5c;
+    border-color: #123e5c;
+    color: #ffffff;
+}
+
 /* Responsive */
 
 @media (max-width: 750px) {
