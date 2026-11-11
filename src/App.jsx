@@ -21,6 +21,7 @@ import CustomerDashboard from "./Pages/CustomerDashboard";
 import VendorDashboard from "./Pages/VendorDashboard";
 import AdminVendors from "./Pages/AdminVendors";
 import MyProducts from "./Pages/MyProducts";
+import VendorOrders from "./Pages/VendorOrders";
 
 
 function getSavedWishlist(email) {
@@ -233,6 +234,7 @@ function removeFromWishlist(product) {
                             removeFromWishlist={removeFromWishlist}
                             selectedCategory={selectedCategory}
                             setMessage={setMessage}
+                            setSelectedCategory={setSelectedCategory}
                         />
                     }
                 />
@@ -367,6 +369,14 @@ function removeFromWishlist(product) {
                     </RoleRoute>
                 }
             />
+            <Route
+                path="/vendor/orders"
+                element={
+                    <RoleRoute user={currentUser} allowedRole="vendor">
+                        <VendorOrders currentUser={currentUser} />
+                    </RoleRoute>
+                }
+            />      
         </Routes>
     </>
 );

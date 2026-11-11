@@ -55,8 +55,8 @@ if (currentUser.vendorStatus === "rejected") {
 
                 <nav className="vendor-menu">
                     <a href="/vendor">Overview</a>
-                    <a href="/vendor/products">My Products</a>
-                    <a href="/vendor/orders">My Orders</a>
+                    <Link to="/vendor/products">My Products</Link>
+                    <Link to="/vendor/orders">My Orders</Link>
                     <a href="/vendor/sales">Sales</a>
                     <a href="/vendor/settings">Shop Settings</a>
                 </nav>

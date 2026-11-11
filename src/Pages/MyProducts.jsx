@@ -73,7 +73,9 @@ function MyProducts({ currentUser }) {
         "vendorProducts",
         JSON.stringify(finalProducts)
     );
+    window.dispatchEvent(new Event("vendorProductsUpdated"));
 
+    
     setVendorProducts(updatedProducts);
 
     setEditingProductId(null);

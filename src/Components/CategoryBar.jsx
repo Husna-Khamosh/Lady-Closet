@@ -3,7 +3,7 @@ import React from "react";
 import "../CSS/store.css";
 import { Link } from "react-router-dom";
 
-function CategoryBar() {
+function CategoryBar({onCategoryChange}) {
     return (
         <>
             <div className="category-top">
@@ -25,10 +25,10 @@ function CategoryBar() {
 
             <div className="shop-by-category">
 
-                <Link to="/category/Clothing" className="shop-by-category-cart">
+                <button className="shop-by-category-cart" onClick={() => onCategoryChange("Clothing")}>
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0S1ZlA_3_Msbp_TbWh0BUamk1QlVKpGTzqL2rj_PASg&s=10" alt="Clothing" />
                     <h4 className="title">Clothing</h4>
-                </Link>
+                </button>
 
                 <Link to="/category/Footwear" className="shop-by-category-cart">
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJmCkoEmoqT6GeqQRCfaauESmzYNkQBxCdhJAzIoMGdg&s=10" alt="Footwear" />

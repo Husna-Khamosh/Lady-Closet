@@ -310,6 +310,73 @@
     background-color: #216b9c;
     color: #ffffff;
 }
+.vendor-orders-page {
+    padding: 20px 25px;
+}
+
+.vendor-orders-header {
+    margin-bottom: 30px;
+}
+
+.vendor-orders-header h2 {
+    color: #123E5C;
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.vendor-orders-header p {
+    color: #64748b;
+    font-size: 14px;
+}
+
+.vendor-orders-stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+    margin-bottom: 30px;
+}
+
+.vendor-order-stat {
+    background: #ffffff;
+    border: 1px solid #e5eaf0;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.vendor-order-stat h4 {
+    color: #64748b;
+    font-size: 13px;
+    font-weight: 500;
+    margin: 0 0 15px;
+}
+
+.vendor-order-stat h2 {
+    color: #123E5C;
+    font-size: 27px;
+    margin: 0 0 8px;
+}
+
+.vendor-order-stat p {
+    color: #94a3b8;
+    font-size: 12px;
+    margin: 0;
+}
+
+@media (max-width: 1000px) {
+    .vendor-orders-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 550px) {
+    .vendor-orders-page {
+        padding: 15px;
+    }
+
+    .vendor-orders-stats {
+        grid-template-columns: 1fr;
+    }
+}
 @media (max-width: 550px) {
     .vendor-products-header {
         align-items: flex-start;
