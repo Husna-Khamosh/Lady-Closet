@@ -54,13 +54,13 @@ function AdminDashboard() {
                 <Link to="/admin">Dashboard</Link>
                 <Link to="/admin/orders">Orders</Link>
                 <Link to="/admin/shops">Shops</Link>
-                <Link to="/admin/vendors">
+                <Link to="/admin/vendorsReview">
                     Vendor Applications
                     <span className="pending-count">
                         {pendingVendorCount}
                     </span>
                 </Link>
-                <Link to="/admin/users">Customers</Link>
+                <Link to="/admin/customers">Customers</Link>
                 <Link to="/admin/categories">Categories</Link>
                 <Link to="/admin/commission">Commission</Link>
                 <Link to="/admin/reviews">Reviews</Link>

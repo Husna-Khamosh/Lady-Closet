@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route,Navigate } from "react-router-dom";
 import MainLayout from "./Layouts/MainLayout";
+import AdminLayout from "./Layouts/AdminLayout";
 
 
 import Store from "./Pages/Store";
@@ -22,7 +23,8 @@ import VendorDashboard from "./Pages/VendorDashboard";
 import AdminVendors from "./Pages/AdminVendors";
 import MyProducts from "./Pages/MyProducts";
 import VendorOrders from "./Pages/VendorOrders";
-
+import VendorSales from "./Pages/VendorSales";
+import AdminCustomer from "./Pages/AdminCustomer";
 
 function getSavedWishlist(email) {
     const wishlistKey = email
@@ -314,19 +316,32 @@ function removeFromWishlist(product) {
                         }
                     />
             </Route>
-        
+
+
+
+
+        {/*admin layout*/}
+            <Route path="/admin" element={<AdminLayout />}>
             
             <Route
-                path="/admin"
+                index
                 element={
                     <RoleRoute user={currentUser} allowedRole="admin">
                         <AdminDashboard />
                     </RoleRoute>
                 }
             />
-
             <Route
-                path="/admin/orders"
+                path="vendorsReview"
+                element={
+                    <RoleRoute user={currentUser} allowedRole="admin">
+                        <AdminVendors />
+                    </RoleRoute>
+                }
+            />
+            
+            <Route
+                path="orders"
                 element={
                     <RoleRoute user={currentUser} allowedRole="admin">
                         <AdminOrders />
@@ -335,15 +350,30 @@ function removeFromWishlist(product) {
             />
 
             <Route
-                path="/admin/shops"
+                path="shops"
                 element={
                     <RoleRoute user={currentUser} allowedRole="admin">
                         <AdminShops />
                     </RoleRoute>
                 }
             />
-            
 
+            <Route 
+                path="customers" 
+                element={
+                    <RoleRoute user={currentUser} allowedRole="admin">
+                        <AdminCustomer />
+                    </RoleRoute>
+                }
+            />
+                
+            
+            
+            </Route>
+
+
+
+        {/*Vendor Section*/}
             <Route
                 path="/vendor"
                 element={
@@ -352,11 +382,12 @@ function removeFromWishlist(product) {
                     </RoleRoute>
                 }
             />
+            
             <Route
-                path="/admin/vendors"
+                path="/admin/customers"
                 element={
                     <RoleRoute user={currentUser} allowedRole="admin">
-                        <AdminVendors />
+                        <AdminCustomer />
                     </RoleRoute>
                 }
             />
@@ -376,7 +407,16 @@ function removeFromWishlist(product) {
                         <VendorOrders currentUser={currentUser} />
                     </RoleRoute>
                 }
-            />      
+            /> 
+            <Route 
+                path="/Vendor/sales"
+                element={
+                    <RoleRoute user={currentUser} allowedRole="vendor">
+                        <VendorSales currentUser={currentUser} />
+                    </RoleRoute>
+                }
+            >
+            </Route>     
         </Routes>
     </>
 );

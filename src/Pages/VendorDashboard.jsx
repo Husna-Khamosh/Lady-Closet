@@ -57,7 +57,7 @@ if (currentUser.vendorStatus === "rejected") {
                     <a href="/vendor">Overview</a>
                     <Link to="/vendor/products">My Products</Link>
                     <Link to="/vendor/orders">My Orders</Link>
-                    <a href="/vendor/sales">Sales</a>
+                    <Link to="/vendor/sales">Sales</Link>
                     <a href="/vendor/settings">Shop Settings</a>
                 </nav>
 

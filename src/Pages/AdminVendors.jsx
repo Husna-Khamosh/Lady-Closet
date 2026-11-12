@@ -58,22 +58,6 @@ function AdminVendors() {
     return (
         <div className="admin-container">
 
-            <aside className="admin-sidebar">
-
-                <div className="sidebar-header">
-                    <div className="logo">LS</div>
-                </div>
-
-                <nav className="sidebar-menu">
-                    <Link to="/admin">Dashboard</Link>
-                    <Link to="/admin/shops">Shops</Link>
-                    <Link to="/admin/vendors">Vendor Applications</Link>
-                    <Link to="/admin/orders">Orders</Link>
-                </nav>
-
-            </aside>
-
-
             <main className="main-content">
 
                 <header className="Dashboard-header">

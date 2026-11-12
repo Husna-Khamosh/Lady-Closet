@@ -19,29 +19,8 @@ function Store({
 }) {
 
   const { addItem } = useCart();
-  const [vendorProducts, setVendorProducts] = useState(() => {
-    return JSON.parse(
-        localStorage.getItem("vendorProducts") || "[]"
-    );
-});
 
-useEffect(() => {
-    function updateVendorProducts() {
-        setVendorProducts(
-            JSON.parse(
-                localStorage.getItem("vendorProducts") || "[]"
-            )
-        );
-    }
-
-    window.addEventListener("vendorProductsUpdated", updateVendorProducts);
-
-    return () => {
-        window.removeEventListener("vendorProductsUpdated", updateVendorProducts);
-    };
-}, []);
-  const allProducts = [...products, ...vendorProducts];
-
+  const allProducts = products;
 
   function handleAddToCart(product) {
     addItem(product);
