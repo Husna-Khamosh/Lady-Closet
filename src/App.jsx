@@ -25,6 +25,7 @@ import MyProducts from "./Pages/MyProducts";
 import VendorOrders from "./Pages/VendorOrders";
 import VendorSales from "./Pages/VendorSales";
 import AdminCustomer from "./Pages/AdminCustomer";
+import AdminCategories from "./Pages/AdminCategory";
 
 function getSavedWishlist(email) {
     const wishlistKey = email
@@ -363,6 +364,14 @@ function removeFromWishlist(product) {
                 element={
                     <RoleRoute user={currentUser} allowedRole="admin">
                         <AdminCustomer />
+                    </RoleRoute>
+                }
+            />
+            <Route 
+                path="categories" 
+                element={
+                    <RoleRoute user={currentUser} allowedRole="admin">
+                        <AdminCategories />
                     </RoleRoute>
                 }
             />
