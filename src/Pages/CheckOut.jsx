@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../CSS/Store.css";
+import "../CSS/store.css";
 import { useCart } from "../Context/CartContext";
 import { AlignRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";

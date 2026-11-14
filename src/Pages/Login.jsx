@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../CSS/Login.css";
+import "../CSS/login.css";
 import { Eye, EyeOff } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
