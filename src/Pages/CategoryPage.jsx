@@ -4,7 +4,7 @@ import products from "../Data";
 import { useCart } from "../Context/CartContext";
 import FilterSidebar from "../Components/FilterSidebar";
 import { useState } from "react";
-import "../CSS/categoryPage.css";
+import "../CSS/CategoryPage.css";
 
 function CategoryPage({
     wishlist,
