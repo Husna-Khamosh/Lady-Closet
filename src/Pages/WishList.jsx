@@ -1,6 +1,7 @@
 import React from "react";
 import "../CSS/store.css";
 
+
 function Wishlist({ wishlist, onRemoveFromWishlist }) {
 
     return (
