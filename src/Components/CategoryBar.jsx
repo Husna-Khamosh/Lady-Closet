@@ -1,6 +1,7 @@
 
 import React from "react";
 import "../CSS/store.css";
+
 import { Link } from "react-router-dom";
 
 function CategoryBar({onCategoryChange}) {
