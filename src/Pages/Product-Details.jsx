@@ -4,7 +4,7 @@ import products from "../Data";
 import { useCart } from "../Context/CartContext";
 
 
-function ProductDetails({setMessage, addToWishlist}) {
+function ProductDetails({setMessage, addToWishlist, wishlist, removeFromWishlist}) {
     const { id } = useParams();
 
     const selectedProduct = products.find(function (product) {
@@ -16,6 +16,9 @@ function ProductDetails({setMessage, addToWishlist}) {
     if (!selectedProduct) {
         return <h2>Product not found!</h2>;
     }
+    const isFavorite = wishlist.some(function(item) {
+    return item.id === selectedProduct.id;
+});
 
     const productImages = selectedProduct.images?.length
         ? selectedProduct.images
@@ -39,7 +42,18 @@ function ProductDetails({setMessage, addToWishlist}) {
     addItem(cartProduct);
 
     setMessage(`${selectedProduct.name} added to cart successfully!`);
+    }
+
+    function handleWishlist() {
+
+    if (isFavorite) {
+        removeFromWishlist(selectedProduct);
+    } else {
+        addToWishlist(selectedProduct);
+    }
+
 }
+    
 
     return (
         <>
@@ -151,11 +165,11 @@ function ProductDetails({setMessage, addToWishlist}) {
                                 Add to Cart
                             </button>
                             <button
-                                className="product-wishlist-btn"
-                                onClick={() => addToWishlist(selectedProduct)}
+                                className={`product-wishlist-btn ${isFavorite ? "active" : ""}`}
+                                onClick={handleWishlist}
                                 title="Add to Wishlist"
                             >
-                                ♡
+                                {isFavorite ? "♥" : "♡"}
                             </button>
                         </div>
             </div>

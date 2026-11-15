@@ -263,6 +263,8 @@ function removeFromWishlist(product) {
                         <ProductDetails
                             setMessage={setMessage}
                             addToWishlist={addToWishlist}
+                            wishlist={wishlist}
+                            removeFromWishlist={removeFromWishlist}
                         />
                     }
                 />

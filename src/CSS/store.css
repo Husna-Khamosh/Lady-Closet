@@ -1408,6 +1408,14 @@ border-color: #21516f;
 .cart-actions .add-to-cart-btn:hover {
     background-color: #123e5c;
 }
+.product-wishlist-btn.active {
+    color: #a7041c !important;
+}
+
+.product-wishlist-btn.active svg {
+    fill: #e60023;
+    color: #e60023;
+}
 .cart-actions .product-wishlist-btn {
     width: 48px;
     height: 48px;
