@@ -78,7 +78,7 @@ console.log("Selected role:", selectedRole);
         navigate("/vendor");
     } 
     else {
-        navigate("/Store");
+        navigate("/");
     }
 
 } else {

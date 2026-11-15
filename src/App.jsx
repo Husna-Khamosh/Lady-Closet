@@ -59,7 +59,7 @@ function RoleRoute({ user, allowedRole, children }) {
             return <Navigate to="/vendor" replace />;
         }
 
-        return <Navigate to="/Store" replace />;
+        return <Navigate to="/" replace />;
     }
 
     return children;
