@@ -26,15 +26,3 @@ app.listen(PORT, () => {
 
 
 
-const fs = require("fs");
-
-app.get("/test-error", (req, res, next) => {
-    fs.readFile("./data/not-found.json", "utf8", (err, data) => {
-        if (err) {
-            next(err);
-            return;
-        }
-
-        res.send(data);
-    });
-});
