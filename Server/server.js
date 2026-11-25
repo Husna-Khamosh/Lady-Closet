@@ -4,11 +4,7 @@ const logger = require("./middleware/logger");
 const errorHandler = require("./middleware/errorHandler");
 const productsRoutes = require("./routes/products.routes");
 const storesRoutes = require("./routes/stores.routes");
-
-const fs = require("fs");
-const productsData = fs.readFileSync("./data/products.json", "utf-8");
-const products = JSON.parse(productsData);
-
+const categoriesRoutes = require("./routes/categories.routes");
 
 
 const app = express();
@@ -20,6 +16,7 @@ app.use(logger);
 
 app.use("/api/products", productsRoutes);
 app.use("/api/stores", storesRoutes);
+app.use("/api/categories", categoriesRoutes);
 
 app.use(errorHandler);
 

@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "name": "Clothing",
+    "description": "Women's clothing and outfits"
+  },
+  {
+    "id": 2,
+    "name": "Footwear",
+    "description": "Women's shoes and footwear"
+  },
+  {
+    "id": 3,
+    "name": "Pants & Jeans",
+    "description": "Women's pants and jeans"
+  },
+  {
+    "id": 4,
+    "name": "Sneakers",
+    "description": "Casual and sporty sneakers"
+  },
+  {
+    "id": 5,
+    "name": "Bags",
+    "description": "Fashion bags and handbags"
+  },
+  {
+    "id": 6,
+    "name": "Accessories",
+    "description": "Fashion accessories"
+  },
+  {
+    "id": 7,
+    "name": "Scarves & Shawls",
+    "description": "Scarves and shawls"
+  }
+]
