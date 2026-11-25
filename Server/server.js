@@ -2,19 +2,24 @@ const express = require("express");
 const cors = require("cors");
 const logger = require("./middleware/logger");
 const errorHandler = require("./middleware/errorHandler");
-
 const productsRoutes = require("./routes/products.routes");
+
+const fs = require("fs");
+const productsData = fs.readFileSync("./data/products.json", "utf-8");
+const products = JSON.parse(productsData);
+
+
 
 const app = express();
 
 // Middlewares
 app.use(cors());
 app.use(express.json());
-app.use(errorHandler);
 app.use(logger);
 
-
 app.use("/api/products", productsRoutes);
+
+app.use(errorHandler);
 
 
 const PORT = process.env.PORT || 5000;
