@@ -3,6 +3,7 @@ const cors = require("cors");
 const logger = require("./middleware/logger");
 const errorHandler = require("./middleware/errorHandler");
 const productsRoutes = require("./routes/products.routes");
+const storesRoutes = require("./routes/stores.routes");
 
 const fs = require("fs");
 const productsData = fs.readFileSync("./data/products.json", "utf-8");
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use(logger);
 
 app.use("/api/products", productsRoutes);
+app.use("/api/stores", storesRoutes);
 
 app.use(errorHandler);
 

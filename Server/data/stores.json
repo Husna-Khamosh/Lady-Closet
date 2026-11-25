@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "name": "Aseel App",
+    "description": "Fashion and clothing store",
+    "owner": "Aseel",
+    "status": "active"
+  },
+  {
+    "id": 2,
+    "name": "Suhrab Store",
+    "description": "Fashion and clothing store",
+    "owner": "Suhrab",
+    "status": "active"
+  },
+  {
+    "id": 3,
+    "name": "Negaah Fashion",
+    "description": "Fashion and clothing store",
+    "owner": "Negaah",
+    "status": "active"
+  },
+  {
+    "id": 4,
+    "name": "Husna Closet",
+    "description": "Women's clothing, shoes and fashion accessories",
+    "owner": "Husna",
+    "status": "active"
+  }
+]
